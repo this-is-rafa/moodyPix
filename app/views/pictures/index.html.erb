@@ -1,15 +1,11 @@
     <%= render 'form', picture: @picture %>
 
-    <div class="row">
     <% @pictures.each_with_index do |picture, index| %>
-      <div id="pic-<%= picture.id %>" class="col-md-3 col-xs-6">
+      <div id="pic-<%= picture.id %>">
         <a href="<%= picture_path(picture) %>" class="img-box" style="background-image:url('<%= picture.url %>');">
         </a>
           <%= picture.title %>
       </div>
-      <% if (index + 1) % 4 == 0 %>
-        </div><div class="row">
-      <% end %>
     <% end %>
     </div>
 
