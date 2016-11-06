@@ -1,0 +1,13 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+.img-box {
+  display: block;
+  width: 200px;
+  height: 200px;
+  max-width: 100%;
+  background-size: cover;
+  background-position: center center;
+}
