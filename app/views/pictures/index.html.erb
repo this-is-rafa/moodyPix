@@ -6,6 +6,16 @@
           <%= image_tag picture.url %>
         </a>
         <div class="comments">
+
+          <br>Labels:<%= picture.label_descriptions %>
+          <br>Label scores:<%= picture.label_scores %>
+          <br>RGB colors:<%= picture.color_rgb_strings %>
+          <br>Color scores:<%= picture.color_scores %>
+          <br>Joy:<%= picture.joy %>
+          <br>Sorrow:<%= picture.sorrow %>
+          <br>Anger:<%= picture.anger %>
+          <br>Surprise:<%= picture.surprise %>
+          <br>Text:<%= picture.detected_text %>
           <span class="img-title"><%= picture.title %></span>
           <% picture.reviews.each do |review| %>
           <div id="comment-<%= review.id %>" class="single-comment">

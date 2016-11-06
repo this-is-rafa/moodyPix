@@ -18,6 +18,14 @@ class PicturesController < ApplicationController
   # GET /pictures/1.json
   def show
     @review = Review.new
+
+    # call Google Vision API method in picture.rb model...
+    @picture.googleVision(@picture)
+    # call response parsing methods in picture.rb model...
+    @picture.visionLabels
+    @picture.visionColors
+    @picture.visionFace
+    @picture.visionText
   end
 
   # GET /pictures/new

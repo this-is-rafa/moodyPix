@@ -6,6 +6,24 @@
       </a>
       <div class="comments">
         <span class="img-title"><%= @picture.title %></span>
+        <div class="img-labels">
+          <% @picture.label_descriptions.each_with_index do |label, i| %>
+          <div class="single-label">
+           <%= label %> - <%= @picture.label_scores[i] %>
+          </div>
+          <% end %>
+          <br>RGB colors:<%= @picture.color_rgb_strings %>
+          <br>Color scores:<%= @picture.color_scores %>
+          <% if @picture.joy == "LIKELY" or @picture.joy == "VERY_LIKELY" %>
+          <div class="single-label">
+            This is a joyous photo.
+          </div>
+          <% end %>
+
+          <br>Sorrow:<%= @picture.sorrow %>
+          <br>Anger:<%= @picture.anger %>
+          <br>Surprise:<%= @picture.surprise %>
+          <br>Text:<%= @picture.detected_text %>
         <% @picture.reviews.each do |review| %>
           <span>
             <%= review.comment %>
