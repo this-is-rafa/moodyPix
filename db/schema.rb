@@ -10,13 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104223249) do
+ActiveRecord::Schema.define(version: 20161106234754) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "pictures", force: :cascade do |t|
     t.string   "title"
     t.string   "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json     "vision"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -24,7 +28,8 @@ ActiveRecord::Schema.define(version: 20161104223249) do
     t.integer  "picture_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["picture_id"], name: "index_reviews_on_picture_id"
+    t.index ["picture_id"], name: "index_reviews_on_picture_id", using: :btree
   end
 
+  add_foreign_key "reviews", "pictures"
 end
