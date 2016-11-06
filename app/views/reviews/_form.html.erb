@@ -1,27 +1,20 @@
+<!--- REVIEW FORM -->
 <%= form_for(@review) do |f| %>
   <% if @review.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
 
       <ul>
-      <% review.errors.full_messages.each do |message| %>
+      <% @review.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :comment %>
-    <%= f.text_area :comment %>
-  </div>
 
-  <div class="field">
-    <%= f.label :picture_id %>
-    <%= f.text_field :picture_id %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="comment-input">
+    <%= f.hidden_field :picture_id, value: @picture.id %>
+    <%= f.text_field :comment, class: "form-control", placeholder: "Add a Comment...", "aria-describedby"=> "title-addon" %>
   </div>
 <% end %>

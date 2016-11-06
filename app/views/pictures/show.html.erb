@@ -1,23 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-  <%= @picture.title %>
+    <div id="pic-<%= @picture.id %>" class="img-box">
+      <a href="<%= picture_path(@picture) %>">
+        <%= image_tag @picture.url %>
+      </a>
+      <div class="comments">
+        <span class="img-title"><%= @picture.title %></span>
+        <% @picture.reviews.each do |review| %>
+          <span>
+            <%= review.comment %>
+            
+            <%= review.created_at %>
+          </span>
+        <% end %>
+        <%= render 'reviews/form', review: @review %>
+      </div>
+    </div>
 
-  <%= image_tag @picture.url %>
 
-<%= @labels %>
-<%= @colors %>
-<% @picture.reviews.each do |review| %>
-  <p>
-    <%= review.comment %>
-    <br>
-    Added on: <%= review.created_at %>
-  </p>
-<% end %>
-
-<h3>New Review</h3>
-<%= render 'reviews/form' %>
-
-<%= link_to 'Edit', edit_picture_path(@picture) %> |
-<%= link_to 'Back', pictures_path %>
 
 

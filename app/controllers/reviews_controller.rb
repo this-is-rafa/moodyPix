@@ -15,6 +15,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/new
   def new
     @review = Review.new
+    @picture = Picture.new
   end
 
   # GET /reviews/1/edit

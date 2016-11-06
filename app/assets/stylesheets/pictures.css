@@ -4,10 +4,31 @@
 */
 
 .img-box {
+  background: #fff;
+  margin: 3em auto;
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+.img-box img {
   display: block;
-  width: 200px;
-  height: 200px;
+  width: 100%;
   max-width: 100%;
+  height: auto;
   background-size: cover;
   background-position: center center;
+}
+
+.img-box .comments {
+  padding: 1em;
+}
+
+.img-box .img-title {
+  font-weight: bold;
+}
+
+@media screen and (min-width: 768px)  {
+  .img-box {
+    max-width: 700px;
+  }
 }

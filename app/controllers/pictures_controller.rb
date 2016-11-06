@@ -11,79 +11,13 @@ class PicturesController < ApplicationController
   def index
     @pictures = Picture.all
     @picture = Picture.new
+    @review = Review.new
   end
 
   # GET /pictures/1
   # GET /pictures/1.json
   def show
     @review = Review.new
-
-    download = open(@picture.url)
-    # IO.copy_stream(download, '~/image.png')
-
-    # Base 64 the input image
-    b64_image = Base64.encode64(download.read)
-
-    # Stuff we need
-    api_key = ENV["GOOGLE_VISION_API_KEY"]
-    content_type = "Content-Type: application/json"
-    url = "https://vision.googleapis.com/v1/images:annotate?key=#{api_key}"
-    data = {
-      "requests": [
-        {
-          "image": {
-            "content": b64_image
-          },
-          "features": [
-            {
-              "type": "LABEL_DETECTION",
-              "maxResults": 10
-            },
-            {
-              "type": "IMAGE_PROPERTIES",
-              "maxResults": 10
-            },
-            {
-              "type": "FACE_DETECTION",
-              "maxResults": 10
-            },
-            {
-              "type": "TEXT_DETECTION",
-              "maxResults": 10
-            }           
-          ]
-        }
-      ]
-    }.to_json
-
-    # Make the request
-    url = URI(url)
-    req = Net::HTTP::Post.new(url, initheader = {'Content-Type' =>'application/json'})
-    req.body = data
-    res = Net::HTTP.new(url.host, url.port)
-    res.use_ssl = true
-
-    # res.set_debug_output $stderr
-
-    detected_text = ""
-    res.start do |http| 
-      # puts "Querying Google for image: #{@picture}"
-      resp = http.request(req)
-      
-      @json = JSON.parse(resp.body)
-
-      @labels = @json["responses"][0]["labelAnnotations"]
-      @colors = @json["responses"][0]["imagePropertiesAnnotation"]["dominantColors"]["colors"]
-
-      if @json && @json["responses"] && @json["responses"][0]["faceAnnotations"]
-        @face_mood = @json["responses"][0]["faceAnnotations"][0]
-      end
-
-      if @json && @json["responses"] && @json["responses"][0]["textAnnotations"] && @json["responses"][0]["textAnnotations"][0]["description"]
-        @detected_text = @json["responses"][0]["textAnnotations"][0]["description"]
-      end
-    end
-
   end
 
   # GET /pictures/new
