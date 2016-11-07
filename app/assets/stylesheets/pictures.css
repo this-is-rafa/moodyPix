@@ -4,38 +4,77 @@
 */
 
 .img-box {
-  background: #fff;
   margin: 3em auto;
+  padding: 1em;
   width: 100%;
+  background: #fff;
   border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .img-box img {
   display: block;
+  margin: 0 auto 1em;
   width: 100%;
   max-width: 100%;
   height: auto;
   background-size: cover;
   background-position: center center;
+  border-radius: 4px;
+}
+
+.img-box h4, .data-box h4 {
+  margin: 0;
+  padding: 0 0 0.5em 0;
 }
 
 .img-box .comments {
-  padding: 1em;
+
 }
 
 .img-box .img-title {
-  font-weight: bold;
+  font-weight: 500;
+}
+
+.data-box {
+  margin: 3em auto;
+  padding: 1em;
+  min-height: 600px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .img-labels {
 }
 
-.img-labels .label-title {
-  height: 50px;
+.label-title {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.label-title a {
+  cursor: pointer;
+} 
+
+.fa-caret-right{
+  transform: rotate(0deg);
+  transition: transform 0.2s linear;
+}
+
+.fa-caret-right.open {
+  transform: rotate(90deg);
+  transition: transform 0.2s linear;
+}
+
+.label-single {
+  padding: 0.2em 0;
+  text-transform: capitalize;
 }
 
 .label-score {
   width: 100%;
+  margin: 0.1em 0 0 0;
   height: 3px;
   background-color: #ccc;
 }
@@ -45,11 +84,29 @@
   background-color: #272727;
 }
 
+.label-colors {
+  border-radius: 4px;
+}
+
+.label-colors .first {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.label-colors .last {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
 .label-single-color {
   display: inline-block;
   height: 50px;
   text-align: center;
   cursor: pointer;
+}
+
+.comments {
+  margin: 0.5em 0 0 0;
 }
 
 .css-colors-code {
