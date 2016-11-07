@@ -28,9 +28,10 @@ class PicturesController < ApplicationController
     @picture.colorsPrimary
     @picture.colorsShade1
     @picture.colorsShade2
-    @picture.colorsLight1
-    @picture.colorsLight2
-    @picture.colorsOpposites
+    @picture.colorsShade3
+    @picture.colorsTint1
+    @picture.colorsTint2
+    @picture.colorsTint3
     @picture.visionFace
     @picture.visionText
   end

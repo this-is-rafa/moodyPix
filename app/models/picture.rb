@@ -1,7 +1,7 @@
 class Picture < ApplicationRecord
   has_many :reviews
 
-  attr_reader :labeldescriptions, :labelscores, :color_rgb_strings_primary, :color_rgb, :colorScores, :detected_text, :face_mood, :joy, :sorrow, :anger, :surprise, :color_rgb_strings_primary, :color_rgb_strings_shade1, :color_rgb_strings_shade2, :color_rgb_strings_light1, :color_rgb_strings_light2, :color_rgb_strings_opposites
+  attr_reader :labeldescriptions, :labelscores, :color_rgb_strings_primary, :color_rgb, :colorScores, :detected_text, :face_mood, :joy, :sorrow, :anger, :surprise, :color_rgb_strings_primary, :color_rgb_strings_shade1, :color_rgb_strings_shade2, :color_rgb_strings_shade3, :color_rgb_strings_tint1, :color_rgb_strings_tint2, :color_rgb_strings_tint3
 
   def googleVision
 
@@ -72,13 +72,13 @@ class Picture < ApplicationRecord
     # Find aggregare value of color scores and stretch to 100 if necessary
     color_percent = 0
     @colorScores.each { |a| color_percent+=a }
+
     if color_percent < 100 
       percent_diff = (100 - color_percent)
-      @colorScores.map do |score|
-        score = (score + (percent_diff/10))
+      @colorScores.map! do |score|
+        score += (percent_diff/10)
       end
     end
-
   end
 
   # convert RGB hashes to strings to use for HTML rgb(r,g,b) color values
@@ -94,7 +94,7 @@ class Picture < ApplicationRecord
 
   def colorsShade1
     @color_rgb_strings_shade1 = []
-    shade_percent = 0.15
+    shade_percent = 0.4
     @colorRGBs.each do |rgb|
       r = rgb["red"]
       g = rgb["green"]
@@ -108,7 +108,7 @@ class Picture < ApplicationRecord
 
   def colorsShade2
     @color_rgb_strings_shade2 = []
-    shade_percent = 0.30
+    shade_percent = 0.6
     @colorRGBs.each do |rgb|
       r = rgb["red"]
       g = rgb["green"]
@@ -120,44 +120,59 @@ class Picture < ApplicationRecord
     end
   end
 
-  def colorsLight1
-    @color_rgb_strings_light1 = []
-    light_percent = 1.15
+  def colorsShade3
+    @color_rgb_strings_shade3 = []
+    shade_percent = 1.5
     @colorRGBs.each do |rgb|
       r = rgb["red"]
       g = rgb["green"]
       b = rgb["blue"]
-      r = (r * light_percent).to_i
-      g = (g * light_percent).to_i
-      b = (b * light_percent).to_i
-      @color_rgb_strings_light1 << "rgb(#{r},#{g},#{b})"
+      r = (r * shade_percent).to_i
+      g = (g * shade_percent).to_i
+      b = (b * shade_percent).to_i
+      @color_rgb_strings_shade3 << "rgb(#{r},#{g},#{b})"
     end
   end
 
-  def colorsLight2
-    @color_rgb_strings_light2 = []
-    light_percent = 1.30
+  def colorsTint1
+    @color_rgb_strings_tint1 = []
+    tint_percent = 0.4
     @colorRGBs.each do |rgb|
       r = rgb["red"]
       g = rgb["green"]
       b = rgb["blue"]
-      r = (r * light_percent).to_i
-      g = (g * light_percent).to_i
-      b = (b * light_percent).to_i
-      @color_rgb_strings_light2 << "rgb(#{r},#{g},#{b})"
+      r = ((255-r)*tint_percent).to_i
+      g = ((255-g)*tint_percent).to_i
+      b = ((255-b)*tint_percent).to_i
+      @color_rgb_strings_tint1 << "rgb(#{r},#{g},#{b})"
     end
   end
 
-  def colorsOpposites
-    @color_rgb_strings_opposites = []
+  def colorsTint2
+    @color_rgb_strings_tint2 = []
+    tint_percent = 0.6
     @colorRGBs.each do |rgb|
       r = rgb["red"]
       g = rgb["green"]
       b = rgb["blue"]
-      r = (255-r).to_i
-      g = (255-g).to_i
-      b = (255-b).to_i
-      @color_rgb_strings_opposites << "rgb(#{r},#{g},#{b})"
+      r = ((255-r)*tint_percent).to_i
+      g = ((255-g)*tint_percent).to_i
+      b = ((255-b)*tint_percent).to_i
+      @color_rgb_strings_tint2 << "rgb(#{r},#{g},#{b})"
+    end
+  end
+
+  def colorsTint3
+    @color_rgb_strings_tint3 = []
+    tint_percent = 1.5
+    @colorRGBs.each do |rgb|
+      r = rgb["red"]
+      g = rgb["green"]
+      b = rgb["blue"]
+      r = ((255-r)*tint_percent).to_i
+      g = ((255-g)*tint_percent).to_i
+      b = ((255-b)*tint_percent).to_i
+      @color_rgb_strings_tint3 << "rgb(#{r},#{g},#{b})"
     end
   end
 
