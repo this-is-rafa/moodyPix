@@ -110,13 +110,27 @@
 }
 
 .css-colors-code {
+  margin-bottom: 1em;
   padding: 1em;
   background: #f7f7f7;
   font-family: monospace;
+  border-radius: 4px;
+  overflow: auto;
+  text-transform: lowercase;
 }
 
 .css-colors-code p {
+  margin: .2em 0 0 0;
   padding: 0;
+}
+
+.swatch {
+  margin-right: 1em;
+  float: left;
+  height: 50px;
+  width: 50px;
+  background-color: #fff;
+  border-radius: 4px;
 }
 
 @media screen and (min-width: 768px)  {

@@ -1,83 +1,19 @@
     <%= render 'form', picture: @picture %>
     
-    <% @pictures.each do |picture| %>
     <div class="row">
+    <% @pictures.reverse.each_with_index do |picture, i| %>
       <div class="col-md-3">
         <div id="pic-<%= picture.id %>" class="img-box">
           <h4 class="img-title">Image</h4>
           <a href="<%= picture_path(picture) %>">
             <%= image_tag picture.url %>
           </a>
-          <div class="analysis">
-
-           <div class="label-title">
-              <a data-toggle="collapse" data-target="#labels-<% picture.id %>">Image Analysis <i id="icon" class="fa fa-caret-right"></i></a>
-            </div>
-            <div id="labels-<% picture.id %>" class="img-labels collapse">
-
-              <% picture.labeldescriptions.each_with_index do |label, i| %>
-              <div class="label-single">
-               <%= label %>
-                <div class="label-score">
-                  <div class="label-score-percent" style="width:<%= picture.labelscores[i] %>%"></div>
-                </div>
-              </div>
-              <% end %>
-
-            </div>
-          </div>
-          <div class="comments">
-            <% picture.reviews.each_with_index do |review, i| %>
-            <div id="comment-<%= review.id %>" class="single-comment">
-              <span class="img-title">Note <%= i + 1 %>: </span><%= review.comment %>
-            </div>
-            <% end %>
-
-            <%= render 'reviews/form', review: @review %>
-
-          </div>
         </div>
       </div>
-      <div class="col-md-9">
-        <div class="data-box">
-
-          <h4 class="data-title">Image Color Scheme</h4>
-          <div class="label-single label-colors">
-              <% picture.color_rgb_strings_primary.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% end %><% end %>
-          </div>
-
-          <div class="label-single">
-            <div class="css-colors-code">
-     
-            </div>
-
-            <div class="label-single label-colors">
-              <% picture.color_rgb_strings_shade1.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% end %><% end %>
-          </div>
-
-          <div class="label-single label-colors">
-              <% picture.color_rgb_strings_shade2.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% end %><% end %>
-          </div>
-
-          <div class="label-single label-colors">
-              <% picture.color_rgb_strings_shade3.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% end %><% end %>
-          </div>
-
-          <div class="label-single label-colors">
-              <% picture.color_rgb_strings_tint1.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% end %><% end %>
-          </div>
-
-          <div class="label-single label-colors">
-              <% picture.color_rgb_strings_tint2.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% end %><% end %>
-          </div>
-
-          <div class="label-single label-colors">
-              <% picture.color_rgb_strings_tint3.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= picture.colorScores[i] %>%;" ></a><% end %><% end %>
-          </div>
-          </div>
-
-        </div>
-      </div>
+      <% if (i + 1) % 4 == 0 %>
+    </div><div class="row">
+      <% end %>
+    <% end %>
     </div>
 
-    <% end %>
+   

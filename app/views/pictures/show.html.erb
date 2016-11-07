@@ -46,9 +46,11 @@
 
           <div class="label-single">
             <div class="css-colors-code">
-     
+              <div class="swatch">
+              </div>
             </div>
 
+            <h4 class="data-title">Color Scheme Shades</h4>
             <div class="label-single label-colors">
               <% @picture.color_rgb_strings_shade1.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% end %><% end %>
           </div>
@@ -61,6 +63,7 @@
               <% @picture.color_rgb_strings_shade3.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% end %><% end %>
           </div>
 
+          <h4 class="data-title">Color Scheme Tints</h4>
           <div class="label-single label-colors">
               <% @picture.color_rgb_strings_tint1.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% end %><% end %>
           </div>
