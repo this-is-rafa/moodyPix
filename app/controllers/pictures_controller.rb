@@ -12,6 +12,22 @@ class PicturesController < ApplicationController
     @pictures = Picture.all
     @picture = Picture.new
     @review = Review.new
+    @labeldescriptions
+
+    #call Google Vision API method in picture.rb model...
+    @picture.googleVision
+    #call response parsing methods in picture.rb model...
+    @picture.visionLabels
+    @picture.visionColors
+    @picture.colorsPrimary
+    @picture.colorsShade1
+    @picture.colorsShade2
+    @picture.colorsShade3
+    @picture.colorsTint1
+    @picture.colorsTint2
+    @picture.colorsTint3
+    @picture.visionFace
+    @picture.visionText
   end
 
   # GET /pictures/1
