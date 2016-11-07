@@ -1,50 +1,61 @@
 
-    <div id="pic-<%= @picture.id %>" class="img-box">
-      <a href="<%= picture_path(@picture) %>">
-        <%= image_tag @picture.url %>
-      </a>
-      <div class="comments">
+    <div class="row">
+      <div class="col-md-3">
+        <div id="pic-<%= @picture.id %>" class="img-box">
+          <a href="<%= picture_path(@picture) %>">
+            <%= image_tag @picture.url %>
+          </a>
+          <div class="comments">
 
-        <div class="label-single">
-          <% @picture.color_rgb_strings.each_with_index do |rgb, i| %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= @picture.color_scores_100[i] %>%;" ></a><% end %>
-        </div>
+            
 
-        <div class="label-single">
-          <div class="css-colors-code">
- 
+
+           <div class="label-title">
+              Labels <a data-toggle="collapse" data-target="#labels-<% @picture.id %>">TOGGLE</a>
+            </div>
+            <div id="labels-<% @picture.id %>" class="img-labels collapse">
+
+              <% @picture.label_descriptions.each_with_index do |label, i| %>
+              <div class="label-single">
+               <%= label %>
+                <div class="label-score">
+                  <div class="label-score-percent" style="width:<%= @picture.label_scores[i] %>%"></div>
+                </div>
+              </div>
+              <% end %>
+
+              <br>Joy: <%= @picture.joy %>
+              <br>Sorrow: <%= @picture.sorrow %>
+              <br>Anger: <%= @picture.anger %>
+              <br>Surprise: <%= @picture.surprise %>
+              <br>Text: <%= @picture.detected_text %>
+            </div>
+
+            <% @picture.reviews.each do |review| %>
+            <div id="comment-<%= review.id %>" class="single-comment">
+              <span class="img-title"><%= time_ago_in_words(review.created_at) %> ago: </span><%= review.comment %>
+            </div>
+            <% end %>
+
+            <%= render 'reviews/form', review: @review %>
+
           </div>
         </div>
+      </div>
+      <div class="col-md-9">
+        <div class="data-box">
 
+          <div class="label-single label-colors">
+              <% @picture.color_rgb_strings.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= rgb %>; width: <%= @picture.color_scores_100[i] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= rgb %>; width: <%= @picture.color_scores_100[i] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= @picture.color_scores_100[i] %>%;" ></a><% end %><% end %>
+          </div>
 
-       <div class="label-title">
-          Labels <a data-toggle="collapse" data-target="#labels-<% @picture.id %>">TOGGLE</a>
-        </div>
-        <div id="labels-<% @picture.id %>" class="img-labels collapse">
-
-          <% @picture.label_descriptions.each_with_index do |label, i| %>
           <div class="label-single">
-           <%= label %>
-            <div class="label-score">
-              <div class="label-score-percent" style="width:<%= @picture.label_scores[i] %>%"></div>
+            <div class="css-colors-code">
+     
             </div>
           </div>
-          <% end %>
 
-          <br>Joy: <%= @picture.joy %>
-          <br>Sorrow: <%= @picture.sorrow %>
-          <br>Anger: <%= @picture.anger %>
-          <br>Surprise: <%= @picture.surprise %>
-          <br>Text: <%= @picture.detected_text %>
         </div>
-
-        <% @picture.reviews.each do |review| %>
-        <div id="comment-<%= review.id %>" class="single-comment">
-          <span class="img-title"><%= time_ago_in_words(review.created_at) %> ago: </span><%= review.comment %>
-        </div>
-        <% end %>
-
-        <%= render 'reviews/form', review: @review %>
-
       </div>
     </div>
 

@@ -4,27 +4,40 @@
 */
 
 .img-box {
-  background: #fff;
   margin: 3em auto;
+  padding: 1em;
   width: 100%;
+  background: #fff;
   border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .img-box img {
   display: block;
+  margin: 0 auto 1em;
   width: 100%;
   max-width: 100%;
   height: auto;
   background-size: cover;
   background-position: center center;
+  border-radius: 4px;
 }
 
 .img-box .comments {
-  padding: 1em;
+
 }
 
 .img-box .img-title {
   font-weight: bold;
+}
+
+.data-box {
+  margin: 3em auto;
+  padding: 1em;
+  min-height: 600px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .img-labels {
@@ -43,6 +56,20 @@
 .label-score-percent {
   height: 3px;
   background-color: #272727;
+}
+
+.label-colors {
+  border-radius: 4px;
+}
+
+.label-colors .first {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.label-colors .last {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 .label-single-color {
