@@ -45,6 +45,11 @@
   background-color: #272727;
 }
 
+.label-single-color {
+  display: inline-block;
+  height: 10px;
+}
+
 @media screen and (min-width: 768px)  {
   .img-box {
     max-width: 700px;

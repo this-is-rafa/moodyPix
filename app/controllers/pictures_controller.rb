@@ -12,12 +12,6 @@ class PicturesController < ApplicationController
     @pictures = Picture.all
     @picture = Picture.new
     @review = Review.new
-    @picture.googleVision(@picture)
-    # call response parsing methods in picture.rb model...
-    @picture.visionLabels
-    @picture.visionColors
-    @picture.visionFace
-    @picture.visionText
   end
 
   # GET /pictures/1
@@ -46,6 +40,7 @@ class PicturesController < ApplicationController
   # POST /pictures
   # POST /pictures.json
   def create
+    
     @picture = Picture.new(picture_params)
 
     respond_to do |format|
@@ -91,6 +86,6 @@ class PicturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      params.require(:picture).permit(:title, :url)
+      params.require(:picture).permit(:title, :url, :vision)
     end
 end

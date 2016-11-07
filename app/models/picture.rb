@@ -65,7 +65,7 @@ class Picture < ApplicationRecord
       @label_scores = []
       @labels.each do |label|
         @label_descriptions << label["description"]
-        @label_scores << label["score"]
+        @label_scores << label["score"] * 100
       end
     end
 
@@ -76,7 +76,7 @@ class Picture < ApplicationRecord
       @color_scores = []
       @colors.each do |color|
         @color_rgb << color["color"]
-        @color_scores << color["score"]
+        @color_scores << color["score"] * 100
       end
       # convert RGB hashes to strings to use for HTML rgb(r,g,b) color values
       @color_rgb_strings = []

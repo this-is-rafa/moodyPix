@@ -4,7 +4,11 @@
         <%= image_tag @picture.url %>
       </a>
       <div class="comments">
-        <span class="img-title"><%= @picture.title %></span>
+      
+        <div class="label-single">
+          <% @picture.color_rgb_strings.each_with_index do |rgb, i| %><div class="label-single-color" style="background-color: <%= rgb %>; width: <%= @picture.color_scores[i] %>%;" ></div><% end %>
+        </div>
+
        <div class="label-title">
           Labels <a data-toggle="collapse" data-target="#labels-<% @picture.id %>">TOGGLE</a>
         </div>
@@ -14,14 +18,11 @@
           <div class="label-single">
            <%= label %>
             <div class="label-score">
-              <div class="label-score-percent" style="width:<%= @picture.label_scores[i] * 100 %>%"></div>
+              <div class="label-score-percent" style="width:<%= @picture.label_scores[i] %>%"></div>
             </div>
           </div>
           <% end %>
 
-
-          <br>RGB colors:<%= @picture.color_rgb_strings %>
-          <br>Color scores:<%= @picture.color_scores %>
           <% if @picture.joy == "LIKELY" or @picture.joy == "VERY_LIKELY" %>
           <div class="label-single">
             This is a joyous photo.
