@@ -1,11 +1,11 @@
 class Picture < ApplicationRecord
   has_many :reviews
 
-  attr_reader :label_descriptions, :label_scores, :color_rgb_strings, :color_scores_100, :detected_text, :face_mood, :joy, :sorrow, :anger, :surprise
+  attr_reader :labeldescriptions, :labelscores, :color_rgb_strings_primary, :color_rgb, :color_scores, :detected_text, :face_mood, :joy, :sorrow, :anger, :surprise, :color_rgb_strings_primary, :color_rgb_strings_shade1, :color_rgb_strings_shade2, :color_rgb_strings_tint1, :color_rgb_strings_tint2, :color_rgb_strings_opposites
 
-  def googleVision(picture)
+  def googleVision
 
-    download = open(picture.url)
+    download = open(self.url)
     # IO.copy_stream(download, '~/image.png')
 
     # Base 64 the input image
@@ -57,83 +57,143 @@ class Picture < ApplicationRecord
         @json = JSON.parse(resp.body)
       end
 
-      # Picture.vision = @json
-
+      visionLabels
+      visionColors
+      colorsPrimary
+      colorsShade1
+      colorsShade2
+      colorsTint1
+      visionFace
+      visionText
+      
   end
+
+ 
 
   # Extract and parse labelAnnotations portion of JSON response
   def visionLabels
-      @labels = @json["responses"][0]["labelAnnotations"]
-      @label_descriptions = []
-      @label_scores = []
-      @labels.each do |label|
-        @label_descriptions << label["description"]
-        @label_scores << label["score"] * 100
-      end
+    @labels = @json["responses"][0]["labelAnnotations"]
+    @labeldescriptions = []
+    @labelscores = []
+    @labels.each do |label|
+      @labeldescriptions << label["description"]
+      @labelscores << label["score"] * 100
+    end
+  end
+
+  # Extract and parse imagePropertiesAnnotation portion of JSON response
+  def visionColors
+    @colors = @json["responses"][0]["imagePropertiesAnnotation"]["dominantColors"]["colors"]
+    @colorRGBs = []
+    @colorScores = []
+
+    @colors.each do |color|
+      @colorRGBs << color["color"]
+      @colorScores << color["score"] * 100
     end
 
-    # Extract and parse imagePropertiesAnnotation portion of JSON response
-    def visionColors
-
-      @colors = @json["responses"][0]["imagePropertiesAnnotation"]["dominantColors"]["colors"]
-      @color_rgb = []
-      @color_scores = []
-      @colors.each do |color|
-        @color_rgb << color["color"]
-        @color_scores << color["score"] * 100
-      end
-
-      # Find aggregare value of color scores
-      @color_percent = 0
-      @color_scores.each do |score|
-        @color_percent += score
-      end
-      if @color_percent < 100 
-        percent_diff = (100 - @color_percent)
-        @color_scores_100 = []
-        @color_scores.each do |score|
-          @color_scores_100 << (score + (percent_diff/10))
-        end
-      @color_percent_100 = 0
-      @color_scores_100.each do |score|
-        @color_percent_100 += score
-      end
-      end
-
-      # convert RGB hashes to strings to use for HTML rgb(r,g,b) color values
-      @color_rgb_strings = []
-      @color_rgb.each do |rgb|
-        r = rgb["red"]
-        g = rgb["green"]
-        b = rgb["blue"]
-        @color_rgb_strings << "rgb(#{r},#{g},#{b})"
-      end
-
-     # convert RGB hashes to strings to use for HTML rgb(r,g,b) color values
-     @color_rgb_strings = []
-     @color_rgb.each do |rgb|
-       r = rgb["red"]
-       g = rgb["green"]
-       b = rgb["blue"]
-       @color_rgb_strings << "rgb(#{r},#{g},#{b})"
-     end
-   end
-
-    # Extract and parse faceAnnotations portion of JSON response
-    def visionFace
-      if @json && @json["responses"] && @json["responses"][0]["faceAnnotations"]
-        @face_mood = @json["responses"][0]["faceAnnotations"][0]
-        @joy = @face_mood["joyLikelihood"]
-        @sorrow = @face_mood["sorrowLikelihood"]
-        @anger = @face_mood["angerLikelihood"]
-        @surprise = @face_mood["surpriseLikelihood"]
+    # Find aggregare value of color scores and stretch to 100 if necessary
+    color_percent = 0
+    @colorScores.each { |a| color_percent+=a }
+    if color_percent < 100 
+      percent_diff = (100 - color_percent)
+      @colorScores.map do |score|
+        score = (score + (percent_diff/10))
       end
     end
+  end
+
+  # convert RGB hashes to strings to use for HTML rgb(r,g,b) color values
+  def colorsPrimary
+    @color_rgb_strings_primary = []
+    @colorRGBs.each do |rgb|
+      r = rgb["red"]
+      g = rgb["green"]
+      b = rgb["blue"]
+      @color_rgb_strings_primary << "rgb(#{r},#{g},#{b})"
+    end
+  end
+
+  def colorsShade1
+    @color_rgb_strings_shade1 = []
+    @colorRGBs.each do |rgb|
+      r = rgb["red"]
+      g = rgb["green"]
+      b = rgb["blue"]
+      r = (r * 0.25).to_i
+      g = (g * 0.25).to_i
+      b = (b * 0.25).to_i
+      @color_rgb_strings_shade1 << "rgb(#{r},#{g},#{b})"
+    end
+  end
+
+  def colorsShade2
+    @color_rgb_strings_shade2 = []
+    @colorRGBs.each do |rgb|
+      r = rgb["red"]
+      g = rgb["green"]
+      b = rgb["blue"]
+      r = (r * 0.5).to_i
+      g = (g * 0.5).to_i
+      b = (b * 0.5).to_i
+      @color_rgb_strings_shade2 << "rgb(#{r},#{g},#{b})"
+    end
+  end
+
+  def colorsTint1
+    @color_rgb_strings_tint1 = []
+    @colorRGBs.each do |rgb|
+      r = rgb["red"]
+      g = rgb["green"]
+      b = rgb["blue"]
+      r = ((255-r) * 0.25).to_i
+      g = ((255-g) * 0.25).to_i
+      b = ((255-b) * 0.25).to_i
+      @color_rgb_strings_tint1 << "rgb(#{r},#{g},#{b})"
+    end
+  end
+
+  def colorsTint2
+    @color_rgb_strings_tint2 = []
+    @colorRGBs.each do |rgb|
+      r = rgb["red"]
+      g = rgb["green"]
+      b = rgb["blue"]
+      r = ((255-r) * 0.5).to_i
+      g = ((255-g) * 0.5).to_i
+      b = ((255-b) * 0.5).to_i
+      @color_rgb_strings_tint2 << "rgb(#{r},#{g},#{b})"
+    end
+  end
+
+  def colorsOpposites
+    @color_rgb_strings_opposites = []
+    @colorRGBs.each do |rgb|
+      r = rgb["red"]
+      g = rgb["green"]
+      b = rgb["blue"]
+      r = ((255-r) * 0.5).to_i
+      g = ((255-g) * 0.5).to_i
+      b = ((255-b) * 0.5).to_i
+      @color_rgb_strings_opposites << "rgb(#{r},#{g},#{b})"
+    end
+  end
+  
+  # Extract and parse faceAnnotations portion of JSON response
+  def visionFace
+    if @json && @json["responses"] && @json["responses"][0]["faceAnnotations"]
+      @face_mood = @json["responses"][0]["faceAnnotations"][0]
+      @joy = @face_mood["joyLikelihood"]
+      @sorrow = @face_mood["sorrowLikelihood"]
+      @anger = @face_mood["angerLikelihood"]
+      @surprise = @face_mood["surpriseLikelihood"]
+    end
+  end
 
   def visionText
     if @json && @json["responses"] && @json["responses"][0]["textAnnotations"] && @json["responses"][0]["textAnnotations"][0]["description"]
       @detected_text = @json["responses"][0]["textAnnotations"][0]["description"]
     end
   end
+
 end
-	

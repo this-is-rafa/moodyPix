@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161106234754) do
+ActiveRecord::Schema.define(version: 20161107041615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,9 +18,18 @@ ActiveRecord::Schema.define(version: 20161106234754) do
   create_table "pictures", force: :cascade do |t|
     t.string   "title"
     t.string   "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.json     "vision"
+    t.text     "labeldescriptions", default: [],              array: true
+    t.float    "labelscores",       default: [],              array: true
+    t.text     "colorRGBs",         default: [],              array: true
+    t.float    "colorScores",       default: [],              array: true
+    t.text     "detectedText"
+    t.string   "joy"
+    t.string   "sorrow"
+    t.string   "anger"
+    t.string   "surprise"
   end
 
   create_table "reviews", force: :cascade do |t|
