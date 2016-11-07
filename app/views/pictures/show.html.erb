@@ -20,7 +20,7 @@
           Labels <a data-toggle="collapse" data-target="#labels-<% @picture.id %>">TOGGLE</a>
         </div>
         <div id="labels-<% @picture.id %>" class="img-labels collapse">
-         
+
           <% @picture.label_descriptions.each_with_index do |label, i| %>
           <div class="label-single">
            <%= label %>
@@ -30,16 +30,11 @@
           </div>
           <% end %>
 
-          <% if @picture.joy == "LIKELY" or @picture.joy == "VERY_LIKELY" %>
-          <div class="label-single">
-            This is a joyous photo.
-          </div>
-          <% end %>
-
-          <br>Sorrow:<%= @picture.sorrow %>
-          <br>Anger:<%= @picture.anger %>
-          <br>Surprise:<%= @picture.surprise %>
-          <br>Text:<%= @picture.detected_text %>
+          <br>Joy: <%= @picture.joy %>
+          <br>Sorrow: <%= @picture.sorrow %>
+          <br>Anger: <%= @picture.anger %>
+          <br>Surprise: <%= @picture.surprise %>
+          <br>Text: <%= @picture.detected_text %>
         </div>
 
         <% @picture.reviews.each do |review| %>

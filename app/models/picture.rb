@@ -24,7 +24,7 @@ class Picture < ApplicationRecord
             "features": [
               {
                 "type": "LABEL_DETECTION",
-                "maxResults": 10
+                "maxResults": 20
               },
               {
                 "type": "IMAGE_PROPERTIES",
@@ -56,6 +56,9 @@ class Picture < ApplicationRecord
         resp = http.request(req)
         @json = JSON.parse(resp.body)
       end
+
+      # Picture.vision = @json
+
   end
 
   # Extract and parse labelAnnotations portion of JSON response
@@ -71,32 +74,39 @@ class Picture < ApplicationRecord
 
     # Extract and parse imagePropertiesAnnotation portion of JSON response
     def visionColors
-     @colors = @json["responses"][0]["imagePropertiesAnnotation"]["dominantColors"]["colors"]
-     @color_rgb = []
-     @color_scores = []
-     @colors.each do |color|
-       @color_rgb << color["color"]
-       @color_scores << color["score"] * 100
-     end
 
-     # Find aggregare value of color scores
-     @color_percent = 0
-     @color_scores.each do |score|
-       @color_percent += score
-     end
-     # if @color_percent < 100 
-     #   percent_diff = (100 - @color_percent)
-     #   @color_scores_100 = []
-     #   @color_scores.each do |score|
-     #     @color_scores_100 << (score * ((percent_diff/100)+1))
-     #   end
-     # end
-     if @color_percent < 100 
+      @colors = @json["responses"][0]["imagePropertiesAnnotation"]["dominantColors"]["colors"]
+      @color_rgb = []
+      @color_scores = []
+      @colors.each do |color|
+        @color_rgb << color["color"]
+        @color_scores << color["score"] * 100
+      end
+
+      # Find aggregare value of color scores
+      @color_percent = 0
+      @color_scores.each do |score|
+        @color_percent += score
+      end
+      if @color_percent < 100 
         percent_diff = (100 - @color_percent)
         @color_scores_100 = []
         @color_scores.each do |score|
-          @color_scores_100 << (score + (percent_diff / 10))
+          @color_scores_100 << (score + (percent_diff/10))
         end
+      @color_percent_100 = 0
+      @color_scores_100.each do |score|
+        @color_percent_100 += score
+      end
+      end
+
+      # convert RGB hashes to strings to use for HTML rgb(r,g,b) color values
+      @color_rgb_strings = []
+      @color_rgb.each do |rgb|
+        r = rgb["red"]
+        g = rgb["green"]
+        b = rgb["blue"]
+        @color_rgb_strings << "rgb(#{r},#{g},#{b})"
       end
 
      # convert RGB hashes to strings to use for HTML rgb(r,g,b) color values
@@ -112,11 +122,11 @@ class Picture < ApplicationRecord
     # Extract and parse faceAnnotations portion of JSON response
     def visionFace
       if @json && @json["responses"] && @json["responses"][0]["faceAnnotations"]
-      @face_mood = @json["responses"][0]["faceAnnotations"][0]
-      @joy = @face_mood["joyLikelihood"]
-      @sorrow = @face_mood["sorrowLikelihood"]
-      @anger = @face_mood["angerLikelihood"]
-      @surpirse = @face_mood["surpriseLikelihood"]
+        @face_mood = @json["responses"][0]["faceAnnotations"][0]
+        @joy = @face_mood["joyLikelihood"]
+        @sorrow = @face_mood["sorrowLikelihood"]
+        @anger = @face_mood["angerLikelihood"]
+        @surprise = @face_mood["surpriseLikelihood"]
       end
     end
 
