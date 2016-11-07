@@ -1,7 +1,7 @@
 class Picture < ApplicationRecord
   has_many :reviews
 
-  attr_reader :labeldescriptions, :labelscores, :color_rgb_strings_primary, :color_rgb, :color_scores, :detected_text, :face_mood, :joy, :sorrow, :anger, :surprise, :color_rgb_strings_primary, :color_rgb_strings_shade1, :color_rgb_strings_shade2, :color_rgb_strings_tint1, :color_rgb_strings_tint2, :color_rgb_strings_opposites
+  attr_reader :labeldescriptions, :labelscores, :color_rgb_strings_primary, :color_rgb, :colorScores, :detected_text, :face_mood, :joy, :sorrow, :anger, :surprise, :color_rgb_strings_primary, :color_rgb_strings_shade1, :color_rgb_strings_shade2, :color_rgb_strings_light1, :color_rgb_strings_light2, :color_rgb_strings_opposites
 
   def googleVision
 
@@ -55,39 +55,16 @@ class Picture < ApplicationRecord
       res.start do |http| 
         resp = http.request(req)
         @json = JSON.parse(resp.body)
-      end
-
-      visionLabels
-      visionColors
-      colorsPrimary
-      colorsShade1
-      colorsShade2
-      colorsTint1
-      visionFace
-      visionText
-      
-  end
-
- 
-
-  # Extract and parse labelAnnotations portion of JSON response
-  def visionLabels
-    @labels = @json["responses"][0]["labelAnnotations"]
-    @labeldescriptions = []
-    @labelscores = []
-    @labels.each do |label|
-      @labeldescriptions << label["description"]
-      @labelscores << label["score"] * 100
-    end
+      end      
   end
 
   # Extract and parse imagePropertiesAnnotation portion of JSON response
   def visionColors
-    @colors = @json["responses"][0]["imagePropertiesAnnotation"]["dominantColors"]["colors"]
+    colors = @json["responses"][0]["imagePropertiesAnnotation"]["dominantColors"]["colors"]
     @colorRGBs = []
     @colorScores = []
 
-    @colors.each do |color|
+    colors.each do |color|
       @colorRGBs << color["color"]
       @colorScores << color["score"] * 100
     end
@@ -101,6 +78,7 @@ class Picture < ApplicationRecord
         score = (score + (percent_diff/10))
       end
     end
+
   end
 
   # convert RGB hashes to strings to use for HTML rgb(r,g,b) color values
@@ -116,53 +94,57 @@ class Picture < ApplicationRecord
 
   def colorsShade1
     @color_rgb_strings_shade1 = []
+    shade_percent = 0.15
     @colorRGBs.each do |rgb|
       r = rgb["red"]
       g = rgb["green"]
       b = rgb["blue"]
-      r = (r * 0.25).to_i
-      g = (g * 0.25).to_i
-      b = (b * 0.25).to_i
+      r = (r * shade_percent).to_i
+      g = (g * shade_percent).to_i
+      b = (b * shade_percent).to_i
       @color_rgb_strings_shade1 << "rgb(#{r},#{g},#{b})"
     end
   end
 
   def colorsShade2
     @color_rgb_strings_shade2 = []
+    shade_percent = 0.30
     @colorRGBs.each do |rgb|
       r = rgb["red"]
       g = rgb["green"]
       b = rgb["blue"]
-      r = (r * 0.5).to_i
-      g = (g * 0.5).to_i
-      b = (b * 0.5).to_i
+      r = (r * shade_percent).to_i
+      g = (g * shade_percent).to_i
+      b = (b * shade_percent).to_i
       @color_rgb_strings_shade2 << "rgb(#{r},#{g},#{b})"
     end
   end
 
-  def colorsTint1
-    @color_rgb_strings_tint1 = []
+  def colorsLight1
+    @color_rgb_strings_light1 = []
+    light_percent = 1.15
     @colorRGBs.each do |rgb|
       r = rgb["red"]
       g = rgb["green"]
       b = rgb["blue"]
-      r = ((255-r) * 0.25).to_i
-      g = ((255-g) * 0.25).to_i
-      b = ((255-b) * 0.25).to_i
-      @color_rgb_strings_tint1 << "rgb(#{r},#{g},#{b})"
+      r = (r * light_percent).to_i
+      g = (g * light_percent).to_i
+      b = (b * light_percent).to_i
+      @color_rgb_strings_light1 << "rgb(#{r},#{g},#{b})"
     end
   end
 
-  def colorsTint2
-    @color_rgb_strings_tint2 = []
+  def colorsLight2
+    @color_rgb_strings_light2 = []
+    light_percent = 1.30
     @colorRGBs.each do |rgb|
       r = rgb["red"]
       g = rgb["green"]
       b = rgb["blue"]
-      r = ((255-r) * 0.5).to_i
-      g = ((255-g) * 0.5).to_i
-      b = ((255-b) * 0.5).to_i
-      @color_rgb_strings_tint2 << "rgb(#{r},#{g},#{b})"
+      r = (r * light_percent).to_i
+      g = (g * light_percent).to_i
+      b = (b * light_percent).to_i
+      @color_rgb_strings_light2 << "rgb(#{r},#{g},#{b})"
     end
   end
 
@@ -172,10 +154,21 @@ class Picture < ApplicationRecord
       r = rgb["red"]
       g = rgb["green"]
       b = rgb["blue"]
-      r = ((255-r) * 0.5).to_i
-      g = ((255-g) * 0.5).to_i
-      b = ((255-b) * 0.5).to_i
+      r = (255-r).to_i
+      g = (255-g).to_i
+      b = (255-b).to_i
       @color_rgb_strings_opposites << "rgb(#{r},#{g},#{b})"
+    end
+  end
+
+  # Extract and parse labelAnnotations portion of JSON response
+  def visionLabels
+    labels = @json["responses"][0]["labelAnnotations"]
+    @labeldescriptions = []
+    @labelscores = []
+    labels.each do |label|
+      @labeldescriptions << label["description"]
+      @labelscores << label["score"] * 100
     end
   end
   
