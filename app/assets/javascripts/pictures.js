@@ -8,6 +8,9 @@ $(document).on('turbolinks:load', function() {
     $('.css-colors-code').html(colorHTML);
   });
 
+  $('.label-title > a').click(function(){
+    $(this).children('.fa-caret-right').toggleClass('open');
+  });
   //Show the color code in the box when you click the color.
   $('.label-single-color').click(function() {
     var cssColor = $(this).css('background-color');

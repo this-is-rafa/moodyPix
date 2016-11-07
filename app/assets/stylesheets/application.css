@@ -26,7 +26,13 @@
 
  body {
   background: #f7f7f7;
+  color: #272727;
  }
+
+ a, a:link, a:hover, a:visited, a:active {
+  color: #272727;
+  text-decoration: none;
+}
 
  header {
   margin: 0 auto;

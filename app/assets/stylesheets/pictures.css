@@ -23,12 +23,17 @@
   border-radius: 4px;
 }
 
+.img-box h4, .data-box h4 {
+  margin: 0;
+  padding: 0 0 0.5em 0;
+}
+
 .img-box .comments {
 
 }
 
 .img-box .img-title {
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .data-box {
@@ -43,12 +48,33 @@
 .img-labels {
 }
 
-.img-labels .label-title {
-  height: 50px;
+.label-title {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.label-title a {
+  cursor: pointer;
+} 
+
+.fa-caret-right{
+  transform: rotate(0deg);
+  transition: transform 0.2s linear;
+}
+
+.fa-caret-right.open {
+  transform: rotate(90deg);
+  transition: transform 0.2s linear;
+}
+
+.label-single {
+  padding: 0.2em 0;
+  text-transform: capitalize;
 }
 
 .label-score {
   width: 100%;
+  margin: 0.1em 0 0 0;
   height: 3px;
   background-color: #ccc;
 }
@@ -77,6 +103,10 @@
   height: 50px;
   text-align: center;
   cursor: pointer;
+}
+
+.comments {
+  margin: 0.5em 0 0 0;
 }
 
 .css-colors-code {

@@ -2,16 +2,14 @@
     <div class="row">
       <div class="col-md-3">
         <div id="pic-<%= @picture.id %>" class="img-box">
+          <h4 class="img-title">Image</h4>
           <a href="<%= picture_path(@picture) %>">
             <%= image_tag @picture.url %>
           </a>
-          <div class="comments">
-
-            
-
+          <div class="analysis">
 
            <div class="label-title">
-              Labels <a data-toggle="collapse" data-target="#labels-<% @picture.id %>">TOGGLE</a>
+              <a data-toggle="collapse" data-target="#labels-<% @picture.id %>">Image Analysis <i id="icon" class="fa fa-caret-right"></i></a>
             </div>
             <div id="labels-<% @picture.id %>" class="img-labels collapse">
 
@@ -24,16 +22,12 @@
               </div>
               <% end %>
 
-              <br>Joy: <%= @picture.joy %>
-              <br>Sorrow: <%= @picture.sorrow %>
-              <br>Anger: <%= @picture.anger %>
-              <br>Surprise: <%= @picture.surprise %>
-              <br>Text: <%= @picture.detected_text %>
             </div>
-
-            <% @picture.reviews.each do |review| %>
+          </div>
+          <div class="comments">
+            <% @picture.reviews.each_with_index do |review, i| %>
             <div id="comment-<%= review.id %>" class="single-comment">
-              <span class="img-title"><%= time_ago_in_words(review.created_at) %> ago: </span><%= review.comment %>
+              <span class="img-title">Note <%= i + 1 %>: </span><%= review.comment %>
             </div>
             <% end %>
 
@@ -45,6 +39,7 @@
       <div class="col-md-9">
         <div class="data-box">
 
+          <h4 class="data-title">Image Color Scheme</h4>
           <div class="label-single label-colors">
               <% @picture.color_rgb_strings.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= rgb %>; width: <%= @picture.color_scores_100[i] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= rgb %>; width: <%= @picture.color_scores_100[i] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= @picture.color_scores_100[i] %>%;" ></a><% end %><% end %>
           </div>
