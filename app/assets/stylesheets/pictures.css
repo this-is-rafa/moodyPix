@@ -47,7 +47,19 @@
 
 .label-single-color {
   display: inline-block;
-  height: 10px;
+  height: 50px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.css-colors-code {
+  padding: 1em;
+  background: #f7f7f7;
+  font-family: monospace;
+}
+
+.css-colors-code p {
+  padding: 0;
 }
 
 @media screen and (min-width: 768px)  {

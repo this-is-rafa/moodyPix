@@ -4,10 +4,17 @@
         <%= image_tag @picture.url %>
       </a>
       <div class="comments">
-      
+
         <div class="label-single">
-          <% @picture.color_rgb_strings.each_with_index do |rgb, i| %><div class="label-single-color" style="background-color: <%= rgb %>; width: <%= @picture.color_scores[i] %>%;" ></div><% end %>
+          <% @picture.color_rgb_strings.each_with_index do |rgb, i| %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= @picture.color_scores_100[i] %>%;" ></a><% end %>
         </div>
+
+        <div class="label-single">
+          <div class="css-colors-code">
+ 
+          </div>
+        </div>
+
 
        <div class="label-title">
           Labels <a data-toggle="collapse" data-target="#labels-<% @picture.id %>">TOGGLE</a>

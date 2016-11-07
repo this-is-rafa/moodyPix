@@ -1,7 +1,7 @@
 class Picture < ApplicationRecord
   has_many :reviews
 
-  attr_reader :label_descriptions, :label_scores, :color_rgb_strings, :color_scores, :detected_text, :face_mood, :joy, :sorrow, :anger, :surprise
+  attr_reader :label_descriptions, :label_scores, :color_rgb_strings, :color_scores_100, :detected_text, :face_mood, :joy, :sorrow, :anger, :surprise
 
   def googleVision(picture)
 
@@ -71,22 +71,43 @@ class Picture < ApplicationRecord
 
     # Extract and parse imagePropertiesAnnotation portion of JSON response
     def visionColors
-      @colors = @json["responses"][0]["imagePropertiesAnnotation"]["dominantColors"]["colors"]
-      @color_rgb = []
-      @color_scores = []
-      @colors.each do |color|
-        @color_rgb << color["color"]
-        @color_scores << color["score"] * 100
+     @colors = @json["responses"][0]["imagePropertiesAnnotation"]["dominantColors"]["colors"]
+     @color_rgb = []
+     @color_scores = []
+     @colors.each do |color|
+       @color_rgb << color["color"]
+       @color_scores << color["score"] * 100
+     end
+
+     # Find aggregare value of color scores
+     @color_percent = 0
+     @color_scores.each do |score|
+       @color_percent += score
+     end
+     # if @color_percent < 100 
+     #   percent_diff = (100 - @color_percent)
+     #   @color_scores_100 = []
+     #   @color_scores.each do |score|
+     #     @color_scores_100 << (score * ((percent_diff/100)+1))
+     #   end
+     # end
+     if @color_percent < 100 
+        percent_diff = (100 - @color_percent)
+        @color_scores_100 = []
+        @color_scores.each do |score|
+          @color_scores_100 << (score + (percent_diff / 10))
+        end
       end
-      # convert RGB hashes to strings to use for HTML rgb(r,g,b) color values
-      @color_rgb_strings = []
-      @color_rgb.each do |rgb|
-        r = rgb["red"]
-        g = rgb["green"]
-        b = rgb["blue"]
-        @color_rgb_strings << "rgb(#{r},#{g},#{b})"
-      end
-    end
+
+     # convert RGB hashes to strings to use for HTML rgb(r,g,b) color values
+     @color_rgb_strings = []
+     @color_rgb.each do |rgb|
+       r = rgb["red"]
+       g = rgb["green"]
+       b = rgb["blue"]
+       @color_rgb_strings << "rgb(#{r},#{g},#{b})"
+     end
+   end
 
     # Extract and parse faceAnnotations portion of JSON response
     def visionFace
