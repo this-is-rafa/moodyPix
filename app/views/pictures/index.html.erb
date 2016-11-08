@@ -1,4 +1,6 @@
-    <%= render 'form', picture: @picture %>
+    <div class="list-group">
+      <%= render 'form', picture: @picture %>
+    </div>
     
     <div class="row">
     <% @pictures.reverse.each_with_index do |picture, i| %>

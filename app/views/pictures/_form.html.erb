@@ -12,23 +12,17 @@
       </ul>
     </div>
   <% end %>
-  <div class="list-group">
-
-    <div class="list-group-item">
-      <h4 class="list-group-item-heading">Feed me an image address</h4>
-    </div>
     
     <div class="list-group-item">
 
       <div class="input-group">
-        <span class="input-group-addon" id="url-addon">URL</span>
-        <%= f.text_field :url,  class: "form-control", "aria-describedby"=> "url-addon" %>
+        <%= f.text_field :url,  class: "form-control", "aria-describedby"=> "url-addon", placeholder: "Img URL" %>
+        <span class="input-group-btn" id="url-addon">
+          <%= f.submit "Analyze", class: "btn btn-success" %>
+        </span>
       </div>
 
-      <%= f.submit class: "btn btn-success" %>
-    
     </div>
         
-  </div>
 
 <% end %>
