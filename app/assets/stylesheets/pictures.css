@@ -8,8 +8,11 @@
   padding: 1em;
   width: 100%;
   background: #fff;
-  border: 1px solid #ccc;
+/*  border: 1px solid #ccc;*/
   border-radius: 4px;
+  -webkit-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.18);
+  -moz-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.18);
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.18);
 }
 
 .img-box img {
@@ -24,8 +27,14 @@
 }
 
 .img-box h4, .data-box h4 {
+  display: inline-block;
   margin: 0;
   padding: 0 0 0.5em 0;
+}
+
+.trash {
+  float: right;
+  font-family: "FontAwesome";
 }
 
 .img-box .comments {
@@ -41,8 +50,11 @@
   padding: 1em;
   min-height: 600px;
   background-color: #fff;
-  border: 1px solid #ccc;
+/*  border: 1px solid #ccc;*/
   border-radius: 4px;
+  -webkit-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.18);
+  -moz-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.18);
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.18);
 }
 
 .img-labels {
