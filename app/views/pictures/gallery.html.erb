@@ -7,7 +7,7 @@
       <div class="col-md-3">
         <div id="pic-<%= picture.id %>" class="img-box">
           <h4 class="img-title">Image</h4>
-          <%= link_to '', @picture, method: :delete, class: "trash" %>
+          <%= link_to '', picture_path(picture), method: :delete, class: "trash" %>
           <a href="<%= picture_path(picture) %>">
             <%= image_tag picture.url %>
           </a>
