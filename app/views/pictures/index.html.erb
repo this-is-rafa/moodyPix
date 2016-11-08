@@ -1,19 +1,12 @@
+
+<div class="list-group">
+
     <%= render 'form', picture: @picture %>
+
+</div>
+
+  
     
-    <div class="row">
-    <% @pictures.reverse.each_with_index do |picture, i| %>
-      <div class="col-md-3">
-        <div id="pic-<%= picture.id %>" class="img-box">
-          <h4 class="img-title">Image</h4>
-          <a href="<%= picture_path(picture) %>">
-            <%= image_tag picture.url %>
-          </a>
-        </div>
-      </div>
-      <% if (i + 1) % 4 == 0 %>
-    </div><div class="row">
-      <% end %>
-    <% end %>
-    </div>
+    
 
    
