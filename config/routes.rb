@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
   delete '/pictures/:id' => 'pictures#destroy'
 
-  delete '/pictures' do
+  # delete '/pictures' do
 
-  end
+  # end
 
   root 'pictures#index'
 
