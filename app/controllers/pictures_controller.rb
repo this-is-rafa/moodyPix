@@ -21,27 +21,15 @@ class PicturesController < ApplicationController
   # GET /pictures/1.json
   def show
     @review = Review.new
-    @labeldescriptions
+    # @colors = Color.new
+    # @labels = Label.new
 
-    #call Google Vision API method in picture.rb model...
-    @picture.googleVision
-    #call response parsing methods in picture.rb model...
-    @picture.visionLabels
-    @picture.visionColors
-    @picture.colorsPrimary
-    @picture.colorsShade1
-    @picture.colorsShade2
-    @picture.colorsShade3
-    @picture.colorsTint1
-    @picture.colorsTint2
-    @picture.colorsTint3
-    @picture.visionFace
-    @picture.visionText
   end
 
   # GET /pictures/new
   def new
     @picture = Picture.new
+    
   end
 
   # GET /pictures/1/edit
@@ -52,13 +40,15 @@ class PicturesController < ApplicationController
   # POST /pictures.json
   def create
     
-    
-    # Shovel everything into picture_params
     @picture = Picture.new(picture_params)
-    @picture.googleVision
+    # @colors = Color.new
+    # @labels = Label.new
+
+    # @picture.googleVision
     
     respond_to do |format|
       if @picture.save
+        @picture.image_analysis
         format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
         format.json { render :show, status: :created, location: @picture }
       else

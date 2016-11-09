@@ -1,10 +1,29 @@
 class Picture < ApplicationRecord
   has_many :reviews
+  has_many :colors
+  has_many :labels
 
   attr_reader :labeldescriptions, :labelscores, :color_rgb_strings_primary, :color_rgb, :colorScores, :detected_text, :face_mood, :joy, :sorrow, :anger, :surprise, :color_rgb_strings_primary, :color_rgb_strings_shade1, :color_rgb_strings_shade2, :color_rgb_strings_shade3, :color_rgb_strings_tint1, :color_rgb_strings_tint2, :color_rgb_strings_tint3
 
-  def googleVision
+  def image_analysis
+    #call Google Vision API method in picture.rb model...
+    googleVision
+    #call response parsing methods in picture.rb model...
+    
+    visionColors
+    colorsPrimary
+    colorsShade1
+    colorsShade2
+    colorsShade3
+    colorsTint1
+    colorsTint2
+    colorsTint3
+    visionLabels
+    visionFace
+    visionText
+  end
 
+  def googleVision
     download = open(self.url)
     # IO.copy_stream(download, '~/image.png')
 
@@ -64,7 +83,8 @@ class Picture < ApplicationRecord
     @colorRGBs = []
     @colorScores = []
 
-    colors.each do |color|
+    colors.each_with_index do |color, i|
+      # @colors[i] << color["color"]
       @colorRGBs << color["color"]
       @colorScores << color["score"] * 100
     end
@@ -79,6 +99,10 @@ class Picture < ApplicationRecord
         score += (percent_diff/10)
       end
     end
+    Color.build_from_google_vision(@colorRGBs, @colorScores, self.id)
+    # @colorScores.each_with_index do |score, i|
+    #   @colors[i+10] << scored
+    # end
   end
 
   # convert RGB hashes to strings to use for HTML rgb(r,g,b) color values
@@ -96,12 +120,12 @@ class Picture < ApplicationRecord
     @color_rgb_strings_shade1 = []
     shade_percent = 0.4
     @colorRGBs.each do |rgb|
-      r = rgb["red"]
-      g = rgb["green"]
-      b = rgb["blue"]
-      r = (r * shade_percent).to_i
-      g = (g * shade_percent).to_i
-      b = (b * shade_percent).to_i
+      r = rgb["red"].to_f
+      g = rgb["green"].to_f
+      b = rgb["blue"].to_f
+      r = (r*shade_percent).to_i
+      g = (g*shade_percent).to_i
+      b = (b*shade_percent).to_i
       @color_rgb_strings_shade1 << "rgb(#{r},#{g},#{b})"
     end
   end
@@ -110,12 +134,12 @@ class Picture < ApplicationRecord
     @color_rgb_strings_shade2 = []
     shade_percent = 0.6
     @colorRGBs.each do |rgb|
-      r = rgb["red"]
-      g = rgb["green"]
-      b = rgb["blue"]
-      r = (r * shade_percent).to_i
-      g = (g * shade_percent).to_i
-      b = (b * shade_percent).to_i
+      r = rgb["red"].to_f
+      g = rgb["green"].to_f
+      b = rgb["blue"].to_f
+      r = (r*shade_percent).to_i
+      g = (g*shade_percent).to_i
+      b = (b*shade_percent).to_i
       @color_rgb_strings_shade2 << "rgb(#{r},#{g},#{b})"
     end
   end
@@ -124,12 +148,12 @@ class Picture < ApplicationRecord
     @color_rgb_strings_shade3 = []
     shade_percent = 1.5
     @colorRGBs.each do |rgb|
-      r = rgb["red"]
-      g = rgb["green"]
-      b = rgb["blue"]
-      r = (r * shade_percent).to_i
-      g = (g * shade_percent).to_i
-      b = (b * shade_percent).to_i
+      r = rgb["red"].to_f
+      g = rgb["green"].to_f
+      b = rgb["blue"].to_f
+      r = (r*shade_percent).to_i
+      g = (g*shade_percent).to_i
+      b = (b*shade_percent).to_i
       @color_rgb_strings_shade3 << "rgb(#{r},#{g},#{b})"
     end
   end
@@ -138,9 +162,9 @@ class Picture < ApplicationRecord
     @color_rgb_strings_tint1 = []
     tint_percent = 0.4
     @colorRGBs.each do |rgb|
-      r = rgb["red"]
-      g = rgb["green"]
-      b = rgb["blue"]
+      r = rgb["red"].to_f
+      g = rgb["green"].to_f
+      b = rgb["blue"].to_f
       r = ((255-r)*tint_percent).to_i
       g = ((255-g)*tint_percent).to_i
       b = ((255-b)*tint_percent).to_i
@@ -152,9 +176,9 @@ class Picture < ApplicationRecord
     @color_rgb_strings_tint2 = []
     tint_percent = 0.6
     @colorRGBs.each do |rgb|
-      r = rgb["red"]
-      g = rgb["green"]
-      b = rgb["blue"]
+      r = rgb["red"].to_f
+      g = rgb["green"].to_f
+      b = rgb["blue"].to_f
       r = ((255-r)*tint_percent).to_i
       g = ((255-g)*tint_percent).to_i
       b = ((255-b)*tint_percent).to_i
@@ -166,9 +190,9 @@ class Picture < ApplicationRecord
     @color_rgb_strings_tint3 = []
     tint_percent = 1.5
     @colorRGBs.each do |rgb|
-      r = rgb["red"]
-      g = rgb["green"]
-      b = rgb["blue"]
+      r = rgb["red"].to_f
+      g = rgb["green"].to_f
+      b = rgb["blue"].to_f
       r = ((255-r)*tint_percent).to_i
       g = ((255-g)*tint_percent).to_i
       b = ((255-b)*tint_percent).to_i
@@ -203,5 +227,4 @@ class Picture < ApplicationRecord
       @detected_text = @json["responses"][0]["textAnnotations"][0]["description"]
     end
   end
-
 end
