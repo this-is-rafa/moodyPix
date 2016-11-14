@@ -14022,3 +14022,135 @@ Processing by PicturesController#gallery as HTML
 Completed 200 OK in 84ms (Views: 74.5ms | ActiveRecord: 4.8ms)
 
 
+Started GET "/" for 127.0.0.1 at 2016-11-14 18:08:55 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PicturesController#index as HTML
+  Rendering pictures/index.html.erb within layouts/application
+  Rendered pictures/_form.html.erb (14.7ms)
+  Rendered pictures/index.html.erb within layouts/application (16.3ms)
+Completed 200 OK in 473ms (Views: 434.3ms | ActiveRecord: 7.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-11-14 18:08:55 -0500
+Processing by PicturesController#index as HTML
+  Rendering pictures/index.html.erb within layouts/application
+  Rendered pictures/_form.html.erb (2.9ms)
+  Rendered pictures/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 40ms (Views: 38.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pictures" for 127.0.0.1 at 2016-11-14 18:09:02 -0500
+Processing by PicturesController#gallery as HTML
+  Rendering pictures/gallery.html.erb within layouts/application
+  Rendered pictures/_form.html.erb (4.7ms)
+  [1m[36mPicture Load (0.8ms)[0m  [1m[34mSELECT "pictures".* FROM "pictures"[0m
+  [1m[36mColor Load (0.7ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 68]]
+  [1m[36mColor Load (0.4ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 67]]
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 76]]
+  [1m[36mColor Load (1.9ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 75]]
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 74]]
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 73]]
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 72]]
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 70]]
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 1]]
+  Rendered pictures/gallery.html.erb within layouts/application (114.7ms)
+Completed 200 OK in 151ms (Views: 137.0ms | ActiveRecord: 12.3ms)
+
+
+Started GET "/pictures/76" for 127.0.0.1 at 2016-11-14 18:09:08 -0500
+Processing by PicturesController#show as HTML
+  Parameters: {"id"=>"76"}
+  [1m[36mPicture Load (0.7ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 76], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 76], ["LIMIT", 1]]
+  Rendering pictures/show.html.erb within layouts/application
+  [1m[36mLabel Load (1.2ms)[0m  [1m[34mSELECT "labels".* FROM "labels" WHERE "labels"."picture_id" = $1[0m  [["picture_id", 76]]
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."picture_id" = $1[0m  [["picture_id", 76]]
+  Rendered reviews/_form.html.erb (2.6ms)
+  Rendered pictures/_form.html.erb (1.7ms)
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 76]]
+  Rendered pictures/show.html.erb within layouts/application (45.0ms)
+Completed 200 OK in 96ms (Views: 77.5ms | ActiveRecord: 7.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-11-14 18:09:11 -0500
+Processing by PicturesController#index as HTML
+  Rendering pictures/index.html.erb within layouts/application
+  Rendered pictures/_form.html.erb (1.5ms)
+  Rendered pictures/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 37ms (Views: 33.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pictures" for 127.0.0.1 at 2016-11-14 18:09:12 -0500
+Processing by PicturesController#gallery as HTML
+  Rendering pictures/gallery.html.erb within layouts/application
+  Rendered pictures/_form.html.erb (1.9ms)
+  [1m[36mPicture Load (0.7ms)[0m  [1m[34mSELECT "pictures".* FROM "pictures"[0m
+  [1m[36mColor Load (0.4ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 68]]
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 67]]
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 76]]
+  [1m[36mColor Load (0.4ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 75]]
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 74]]
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 73]]
+  [1m[36mColor Load (0.4ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 72]]
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 70]]
+  [1m[36mColor Load (0.2ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 1]]
+  Rendered pictures/gallery.html.erb within layouts/application (50.1ms)
+Completed 200 OK in 101ms (Views: 94.5ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/pictures/68" for 127.0.0.1 at 2016-11-14 18:09:14 -0500
+Processing by PicturesController#show as HTML
+  Parameters: {"id"=>"68"}
+  [1m[36mPicture Load (0.7ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 68], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 68], ["LIMIT", 1]]
+  Rendering pictures/show.html.erb within layouts/application
+  [1m[36mLabel Load (1.8ms)[0m  [1m[34mSELECT "labels".* FROM "labels" WHERE "labels"."picture_id" = $1[0m  [["picture_id", 68]]
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."picture_id" = $1[0m  [["picture_id", 68]]
+  Rendered reviews/_form.html.erb (1.0ms)
+  Rendered pictures/_form.html.erb (1.0ms)
+  [1m[36mColor Load (0.8ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 68]]
+  Rendered pictures/show.html.erb within layouts/application (20.9ms)
+Completed 200 OK in 68ms (Views: 60.7ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/pictures" for 127.0.0.1 at 2016-11-14 18:09:17 -0500
+Processing by PicturesController#gallery as HTML
+  Rendering pictures/gallery.html.erb within layouts/application
+  Rendered pictures/_form.html.erb (1.9ms)
+  [1m[36mPicture Load (0.4ms)[0m  [1m[34mSELECT "pictures".* FROM "pictures"[0m
+  [1m[36mColor Load (2.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 68]]
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 67]]
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 76]]
+  [1m[36mColor Load (1.1ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 75]]
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 74]]
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 73]]
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 72]]
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 70]]
+  [1m[36mColor Load (0.2ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 1]]
+  Rendered pictures/gallery.html.erb within layouts/application (47.5ms)
+Completed 200 OK in 104ms (Views: 94.4ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/pictures/75" for 127.0.0.1 at 2016-11-14 18:09:22 -0500
+Processing by PicturesController#show as HTML
+  Parameters: {"id"=>"75"}
+  [1m[36mPicture Load (0.6ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 75], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 75], ["LIMIT", 1]]
+  Rendering pictures/show.html.erb within layouts/application
+  [1m[36mLabel Load (4.7ms)[0m  [1m[34mSELECT "labels".* FROM "labels" WHERE "labels"."picture_id" = $1[0m  [["picture_id", 75]]
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."picture_id" = $1[0m  [["picture_id", 75]]
+  Rendered reviews/_form.html.erb (2.0ms)
+  Rendered pictures/_form.html.erb (1.9ms)
+  [1m[36mColor Load (2.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 75]]
+  Rendered pictures/show.html.erb within layouts/application (29.6ms)
+Completed 200 OK in 69ms (Views: 57.2ms | ActiveRecord: 7.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-11-14 18:09:25 -0500
+Processing by PicturesController#index as HTML
+  Rendering pictures/index.html.erb within layouts/application
+  Rendered pictures/_form.html.erb (3.2ms)
+  Rendered pictures/index.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 41ms (Views: 39.2ms | ActiveRecord: 0.0ms)
+
+
