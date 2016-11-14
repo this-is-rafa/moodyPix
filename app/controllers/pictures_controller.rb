@@ -52,7 +52,7 @@ class PicturesController < ApplicationController
     
     # Shovel everything into picture_params
     @picture = Picture.new(picture_params)
-    @picture.googleVision
+
     
     respond_to do |format|
       if @picture.save
