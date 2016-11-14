@@ -5,6 +5,7 @@ require 'open-uri'
 
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :set_colors, only: [:show]
 
   # GET /pictures
   # GET /pictures.json
@@ -21,27 +22,13 @@ class PicturesController < ApplicationController
   # GET /pictures/1.json
   def show
     @review = Review.new
-    @labeldescriptions
 
-    #call Google Vision API method in picture.rb model...
-    @picture.googleVision
-    #call response parsing methods in picture.rb model...
-    @picture.visionLabels
-    @picture.visionColors
-    @picture.colorsPrimary
-    @picture.colorsShade1
-    @picture.colorsShade2
-    @picture.colorsShade3
-    @picture.colorsTint1
-    @picture.colorsTint2
-    @picture.colorsTint3
-    @picture.visionFace
-    @picture.visionText
   end
 
   # GET /pictures/new
   def new
     @picture = Picture.new
+    
   end
 
   # GET /pictures/1/edit
@@ -52,13 +39,11 @@ class PicturesController < ApplicationController
   # POST /pictures.json
   def create
     
-    
-    # Shovel everything into picture_params
     @picture = Picture.new(picture_params)
-
     
     respond_to do |format|
       if @picture.save
+        @picture.image_analysis
         format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
         format.json { render :show, status: :created, location: @picture }
       else
@@ -84,7 +69,9 @@ class PicturesController < ApplicationController
 
   # DELETE /pictures/1
   # DELETE /pictures/1.json
-  def destroy
+  def destroy 
+    @picture.colors.delete_all
+    @picture.labels.delete_all
     @picture.destroy
     respond_to do |format|
       format.html { redirect_to pictures_url, notice: 'Picture was successfully destroyed.' }
@@ -98,8 +85,12 @@ class PicturesController < ApplicationController
       @picture = Picture.find(params[:id])
     end
 
+     def set_colors
+      @colors = Picture.find(params[:id]).colors
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
       params.require(:picture).permit(:title, :url, :vision)
-    end
+    end  
 end

@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rgb1: 
+  rgb2: MyString
+  rgb3: MyString
+  rgb4: MyString
+  rgb5: MyString
+  rgb6: MyString
+  rgb7: MyString
+  rgb8: MyString
+  rgb9: MyString
+  rgb10: MyString
+  score1: 1.5
+  score2: 1.5
+  score3: 1.5
+  score4: 1.5
+  score5: 1.5
+  score6: 1.5
+  score7: 1.5
+  score8: 1.5
+  score9: 1.5
+  score10: 1.5
+  picture: one
+
+two:
+  rgb1: 
+  rgb2: MyString
+  rgb3: MyString
+  rgb4: MyString
+  rgb5: MyString
+  rgb6: MyString
+  rgb7: MyString
+  rgb8: MyString
+  rgb9: MyString
+  rgb10: MyString
+  score1: 1.5
+  score2: 1.5
+  score3: 1.5
+  score4: 1.5
+  score5: 1.5
+  score6: 1.5
+  score7: 1.5
+  score8: 1.5
+  score9: 1.5
+  score10: 1.5
+  picture: two

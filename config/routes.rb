@@ -2,10 +2,6 @@ Rails.application.routes.draw do
 
   delete '/pictures/:id' => 'pictures#destroy'
 
-  # delete '/pictures' do
-
-  # end
-
   root 'pictures#index'
 
   get '/pictures', to: 'pictures#gallery'

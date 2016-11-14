@@ -68,8 +68,10 @@
 .gallery-form {
   width: 300;
   margin: 10px auto;
+  margin-top: 200px;
   border-radius: 0;
 }
+
 
 #index-gallery-btn {
   margin: 10px auto;

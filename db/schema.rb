@@ -10,26 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107041615) do
+ActiveRecord::Schema.define(version: 20161110022620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "colors", force: :cascade do |t|
+    t.string  "rgb"
+    t.float   "score"
+    t.integer "picture_id"
+    t.string  "shade1"
+    t.string  "shade2"
+    t.string  "shade3"
+    t.string  "tint1"
+    t.string  "tint2"
+    t.string  "tint3"
+    t.index ["picture_id"], name: "index_colors_on_picture_id", using: :btree
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string  "description"
+    t.float   "score"
+    t.integer "picture_id"
+    t.index ["picture_id"], name: "index_labels_on_picture_id", using: :btree
+  end
+
   create_table "pictures", force: :cascade do |t|
     t.string   "title"
     t.string   "url"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.json     "vision"
-    t.text     "labeldescriptions", default: [],              array: true
-    t.float    "labelscores",       default: [],              array: true
-    t.text     "colorRGBs",         default: [],              array: true
-    t.float    "colorScores",       default: [],              array: true
-    t.text     "detectedText"
-    t.string   "joy"
-    t.string   "sorrow"
-    t.string   "anger"
-    t.string   "surprise"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -40,5 +50,7 @@ ActiveRecord::Schema.define(version: 20161107041615) do
     t.index ["picture_id"], name: "index_reviews_on_picture_id", using: :btree
   end
 
+  add_foreign_key "colors", "pictures"
+  add_foreign_key "labels", "pictures"
   add_foreign_key "reviews", "pictures"
 end

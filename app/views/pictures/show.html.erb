@@ -14,11 +14,11 @@
             </div>
             <div id="labels-<% @picture.id %>" class="img-labels collapse">
 
-              <% @picture.labeldescriptions.each_with_index do |label, i| %>
+              <% @picture.labels.each_with_index do |label, i| %>
               <div class="label-single">
-               <%= label %>
+               <%= @picture.labels[i]["description"] %>
                 <div class="label-score">
-                  <div class="label-score-percent" style="width:<%= @picture.labelscores[i] %>%"></div>
+                  <div class="label-score-percent" style="width:<%= @picture.labels[i]["score"] %>%"></div>
                 </div>
               </div>
               <% end %>
@@ -39,7 +39,9 @@
         </div>
 
         <div class="img-box">
+
           <h4 class="img-title">New Image</h4>
+
           <%= render 'form', picture: @picture %>
         </div>
 
@@ -49,7 +51,7 @@
 
           <h4 class="data-title">Image Color Scheme</h4>
           <div class="label-single label-colors">
-              <% @picture.color_rgb_strings_primary.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% end %><% end %>
+              <% @picture.colors.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= @picture.colors[i]["rgb"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= @picture.colors[i]["rgb"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= @picture.colors[i]["rgb"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% end %><% end %>
           </div>
 
           <div class="label-single">
@@ -60,28 +62,28 @@
 
             <h4 class="data-title">Color Scheme Shades</h4>
             <div class="label-single label-colors">
-              <% @picture.color_rgb_strings_shade1.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% end %><% end %>
+              <% @picture.colors.each_with_index do |shade1, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= @picture.colors[i]["shade1"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= @picture.colors[i]["shade1"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= @picture.colors[i]["shade1"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% end %><% end %>
           </div>
 
           <div class="label-single label-colors">
-              <% @picture.color_rgb_strings_shade2.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% end %><% end %>
+              <% @picture.colors.each_with_index do |shade2, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= @picture.colors[i]["shade2"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= @picture.colors[i]["shade2"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= @picture.colors[i]["shade2"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% end %><% end %>
           </div>
 
           <div class="label-single label-colors">
-              <% @picture.color_rgb_strings_shade3.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% end %><% end %>
+              <% @picture.colors.each_with_index do |shade3, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= @picture.colors[i]["shade3"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= @picture.colors[i]["shade3"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= @picture.colors[i]["shade3"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% end %><% end %>
           </div>
 
           <h4 class="data-title">Color Scheme Tints</h4>
           <div class="label-single label-colors">
-              <% @picture.color_rgb_strings_tint1.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% end %><% end %>
+              <% @picture.colors.each_with_index do |tint1, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= @picture.colors[i]["tint1"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= @picture.colors[i]["tint1"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= @picture.colors[i]["tint1"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% end %><% end %>
           </div>
 
           <div class="label-single label-colors">
-              <% @picture.color_rgb_strings_tint2.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% end %><% end %>
+              <% @picture.colors.each_with_index do |tint2, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= @picture.colors[i]["tint2"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= @picture.colors[i]["tint2"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= @picture.colors[i]["tint2"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% end %><% end %>
           </div>
 
           <div class="label-single label-colors">
-              <% @picture.color_rgb_strings_tint3.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= rgb %>; width: <%= @picture.colorScores[i] %>%;" ></a><% end %><% end %>
+              <% @picture.colors.each_with_index do |tint3, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= @picture.colors[i]["tint3"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= @picture.colors[i]["tint3"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= @picture.colors[i]["tint3"] %>; width: <%= @picture.colors[i]["score"] %>%;" ></a><% end %><% end %>
           </div>
           </div>
 
