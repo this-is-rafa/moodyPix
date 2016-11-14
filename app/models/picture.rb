@@ -8,8 +8,7 @@ class Picture < ApplicationRecord
   def image_analysis
     #call Google Vision API method in picture.rb model...
     googleVision
-    #call response parsing methods in picture.rb model...
-    
+    #call parsing methods to extract useful data from API response...    
     visionColors
     colorsPrimary
     colorsShade1
@@ -25,7 +24,6 @@ class Picture < ApplicationRecord
 
   def googleVision
     download = open(self.url)
-    # IO.copy_stream(download, '~/image.png')
 
     # Base 64 the input image
     b64_image = Base64.encode64(download.read)
@@ -99,16 +97,16 @@ class Picture < ApplicationRecord
         score += (percent_diff/10)
       end
     end
-    Color.build_from_google_vision(@colorRGBs, @colorScores, self.id)
-    # @colorScores.each_with_index do |score, i|
-    #   @colors[i+10] << scored
-    # end
-  end
+
+    # Call Color class method to shove RGB and score values into colors table
+    Color.store_colors_primary(@colorRGBs, @colorScores, self.id)
+ 
+   end
 
   # convert RGB hashes to strings to use for HTML rgb(r,g,b) color values
   def colorsPrimary
     @color_rgb_strings_primary = []
-    @colorRGBs.each do |rgb|
+    self.colors.each do |rgb|
       r = rgb["red"]
       g = rgb["green"]
       b = rgb["blue"]
@@ -119,7 +117,7 @@ class Picture < ApplicationRecord
   def colorsShade1
     @color_rgb_strings_shade1 = []
     shade_percent = 0.4
-    @colorRGBs.each do |rgb|
+    self.colors.each do |rgb|
       r = rgb["red"].to_f
       g = rgb["green"].to_f
       b = rgb["blue"].to_f
@@ -133,7 +131,7 @@ class Picture < ApplicationRecord
   def colorsShade2
     @color_rgb_strings_shade2 = []
     shade_percent = 0.6
-    @colorRGBs.each do |rgb|
+    self.colors.each do |rgb|
       r = rgb["red"].to_f
       g = rgb["green"].to_f
       b = rgb["blue"].to_f
@@ -147,7 +145,7 @@ class Picture < ApplicationRecord
   def colorsShade3
     @color_rgb_strings_shade3 = []
     shade_percent = 1.5
-    @colorRGBs.each do |rgb|
+    self.colors.each do |rgb|
       r = rgb["red"].to_f
       g = rgb["green"].to_f
       b = rgb["blue"].to_f
@@ -161,7 +159,7 @@ class Picture < ApplicationRecord
   def colorsTint1
     @color_rgb_strings_tint1 = []
     tint_percent = 0.4
-    @colorRGBs.each do |rgb|
+    self.colors.each do |rgb|
       r = rgb["red"].to_f
       g = rgb["green"].to_f
       b = rgb["blue"].to_f
@@ -175,7 +173,7 @@ class Picture < ApplicationRecord
   def colorsTint2
     @color_rgb_strings_tint2 = []
     tint_percent = 0.6
-    @colorRGBs.each do |rgb|
+    self.colors.each do |rgb|
       r = rgb["red"].to_f
       g = rgb["green"].to_f
       b = rgb["blue"].to_f
@@ -189,7 +187,7 @@ class Picture < ApplicationRecord
   def colorsTint3
     @color_rgb_strings_tint3 = []
     tint_percent = 1.5
-    @colorRGBs.each do |rgb|
+    self.colors.each do |rgb|
       r = rgb["red"].to_f
       g = rgb["green"].to_f
       b = rgb["blue"].to_f
@@ -207,8 +205,10 @@ class Picture < ApplicationRecord
     @labelscores = []
     labels.each do |label|
       @labeldescriptions << label["description"]
-      @labelscores << label["score"] * 100
+      @labelscores << label["score"]*100
     end
+
+    Label.store_labels(@labeldescriptions, @labelscores, self.id)
   end
   
   # Extract and parse faceAnnotations portion of JSON response

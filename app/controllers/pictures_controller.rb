@@ -5,6 +5,7 @@ require 'open-uri'
 
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :set_colors, only: [:show]
 
   # GET /pictures
   # GET /pictures.json
@@ -21,8 +22,6 @@ class PicturesController < ApplicationController
   # GET /pictures/1.json
   def show
     @review = Review.new
-    # @colors = Color.new
-    # @labels = Label.new
 
   end
 
@@ -41,10 +40,6 @@ class PicturesController < ApplicationController
   def create
     
     @picture = Picture.new(picture_params)
-    # @colors = Color.new
-    # @labels = Label.new
-
-    # @picture.googleVision
     
     respond_to do |format|
       if @picture.save
@@ -74,7 +69,9 @@ class PicturesController < ApplicationController
 
   # DELETE /pictures/1
   # DELETE /pictures/1.json
-  def destroy
+  def destroy 
+    @picture.colors.delete_all
+    @picture.labels.delete_all
     @picture.destroy
     respond_to do |format|
       format.html { redirect_to pictures_url, notice: 'Picture was successfully destroyed.' }
@@ -88,8 +85,12 @@ class PicturesController < ApplicationController
       @picture = Picture.find(params[:id])
     end
 
+     def set_colors
+      @colors = Picture.find(params[:id]).colors
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
       params.require(:picture).permit(:title, :url, :vision)
-    end
+    end  
 end
