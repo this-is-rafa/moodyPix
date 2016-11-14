@@ -59,9 +59,21 @@
   text-decoration: none;
 }
 
+
 .home-group {
   margin: 20% auto 0;
   border-radius: 0;
+}
+
+.gallery-form {
+  width: 300;
+  margin: 10px auto;
+  border-radius: 0;
+}
+
+#index-gallery-btn {
+  margin: 10px auto;
+  display: block;
 }
 
 .input-group {
@@ -98,6 +110,9 @@
 
 @media screen and (min-width: 768px) {
   .list-group {
+    width: 400px;
+  }
+  .gallery-form {
     width: 400px;
   }
 }

@@ -9,11 +9,14 @@ class PicturesController < ApplicationController
   # GET /pictures
   # GET /pictures.json
   def index
-    @pictures = Picture.all
     @picture = Picture.new
     @review = Review.new
   end
 
+  def gallery
+    @pictures = Picture.all
+    @picture = Picture.new
+  end
   # GET /pictures/1
   # GET /pictures/1.json
   def show

@@ -14,21 +14,16 @@
   <% end %>
     
 
-
       <div class="input-group">
-        <%= f.text_field :url,  class: "form-control", "aria-describedby"=> "url-addon", placeholder: "Img URL" %>
+      
+        <%= f.text_field :url, class: "form-control", placeholder: "Image URL", "aria-describedby"=> "url-addon" %>
         <span class="input-group-btn" id="url-addon">
-          <%= f.submit "Analyze", class: "btn btn-success" %>
+          <%= f.submit "Submit", class: "btn btn-success" %>
         </span>
-      </div>
-      <div class="input-group">
-      <label class="btn btn-primary btn-file">
-        <i class="fa fa-camera"></i> <input type="file" accept="image/*" capture="camera" aria-describedby="file" style="display:none;">
-      </label>
+
       </div>
 
+    <a id="index-gallery-btn" class="btn btn-default" href="/pictures">Gallery</a>
 
-
-        
 
 <% end %>
