@@ -6,11 +6,13 @@
     <% @pictures.reverse.each_with_index do |picture, i| %>
       <div class="col-md-3">
         <div id="pic-<%= picture.id %>" class="img-box">
-          <h4 class="img-title">Image</h4>
           <%= link_to '', picture_path(picture), method: :delete, class: "trash" %>
           <a href="<%= picture_path(picture) %>">
             <%= image_tag picture.url %>
           </a>
+          <div class="label-single label-colors">
+            <% picture.colors.each_with_index do |rgb, i| %><% if i == 0 %><a class="label-single-color first" style="background-color: <%= picture.colors[i]["rgb"] %>; width: <%= picture.colors[i]["score"] %>%;" ></a><% elsif i == 9 %><a class="label-single-color last" style="background-color: <%= picture.colors[i]["rgb"] %>; width: <%= picture.colors[i]["score"] %>%;" ></a><% else %><a class="label-single-color" style="background-color: <%= picture.colors[i]["rgb"] %>; width: <%= picture.colors[i]["score"] %>%;" ></a><% end %><% end %>
+          </div>
         </div>
       </div>
       <% if (i + 1) % 4 == 0 %>

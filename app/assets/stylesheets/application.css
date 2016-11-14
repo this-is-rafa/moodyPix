@@ -111,7 +111,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .list-group {
+  .home-group {
     width: 400px;
   }
   .gallery-form {
