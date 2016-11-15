@@ -14500,3 +14500,216 @@ WHERE c.contype = 'f'
   AND t3.nspname = ANY (current_schemas(false))
 ORDER BY c.conname
 [0m
+Started GET "/" for 127.0.0.1 at 2016-11-14 20:04:46 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PicturesController#index as HTML
+  Rendering pictures/index.html.erb within layouts/application
+  Rendered pictures/_form.html.erb (8.5ms)
+  Rendered pictures/index.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 376ms (Views: 347.6ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/pictures" for 127.0.0.1 at 2016-11-14 20:04:52 -0500
+Processing by PicturesController#gallery as HTML
+  Rendering pictures/gallery.html.erb within layouts/application
+  Rendered pictures/_form.html.erb (1.6ms)
+  [1m[36mPicture Load (1.7ms)[0m  [1m[34mSELECT "pictures".* FROM "pictures"[0m
+  Rendered pictures/gallery.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 41ms (Views: 37.1ms | ActiveRecord: 1.7ms)
+
+
+Started POST "/pictures" for 127.0.0.1 at 2016-11-14 20:05:18 -0500
+Processing by PicturesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4+PykmaL6MQfQ5FpJwTp87s743Y0vHe8ztH3z/uFo/9K1tQYtVg0Bi3InTWR/wteCHgPPAbiJNj/TJ96ahirJQ==", "picture"=>{"url"=>"http://i.imgur.com/TpKk02b.jpg"}, "commit"=>"Submit"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "pictures" ("url", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["url", "http://i.imgur.com/TpKk02b.jpg"], ["created_at", 2016-11-15 01:05:18 UTC], ["updated_at", 2016-11-15 01:05:18 UTC]]
+  [1m[35m (140.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.2ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "colors" ("rgb", "score", "picture_id", "shade1", "shade2", "shade3", "tint1", "tint2", "tint3") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["rgb", "rgb(206,72,97)"], ["score", 22.8855273885], ["picture_id", 1], ["shade1", "rgb(82,28,38)"], ["shade2", "rgb(144,50,67)"], ["shade3", "rgb(288,100,135)"], ["tint1", "rgb(19,73,63)"], ["tint2", "rgb(34,128,110)"], ["tint3", "rgb(68,256,221)"]]
+  [1m[35m (21.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.2ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "colors" ("rgb", "score", "picture_id", "shade1", "shade2", "shade3", "tint1", "tint2", "tint3") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["rgb", "rgb(127,16,31)"], ["score", 20.2436423885], ["picture_id", 1], ["shade1", "rgb(50,6,12)"], ["shade2", "rgb(88,11,21)"], ["shade3", "rgb(177,22,43)"], ["tint1", "rgb(51,95,89)"], ["tint2", "rgb(89,167,156)"], ["tint3", "rgb(179,334,313)"]]
+  [1m[35m (6.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.2ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "colors" ("rgb", "score", "picture_id", "shade1", "shade2", "shade3", "tint1", "tint2", "tint3") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["rgb", "rgb(235,232,229)"], ["score", 2.3820141384999998], ["picture_id", 1], ["shade1", "rgb(94,92,91)"], ["shade2", "rgb(164,162,160)"], ["shade3", "rgb(329,324,320)"], ["tint1", "rgb(8,9,10)"], ["tint2", "rgb(14,16,18)"], ["tint3", "rgb(28,32,36)"]]
+  [1m[35m (8.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.2ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "colors" ("rgb", "score", "picture_id", "shade1", "shade2", "shade3", "tint1", "tint2", "tint3") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["rgb", "rgb(157,30,53)"], ["score", 16.6780493885], ["picture_id", 1], ["shade1", "rgb(62,12,21)"], ["shade2", "rgb(109,21,37)"], ["shade3", "rgb(219,42,74)"], ["tint1", "rgb(39,90,80)"], ["tint2", "rgb(68,157,141)"], ["tint3", "rgb(137,315,282)"]]
+  [1m[35m (7.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.2ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "colors" ("rgb", "score", "picture_id", "shade1", "shade2", "shade3", "tint1", "tint2", "tint3") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["rgb", "rgb(214,55,89)"], ["score", 11.4130055885], ["picture_id", 1], ["shade1", "rgb(85,22,35)"], ["shade2", "rgb(149,38,62)"], ["shade3", "rgb(299,77,124)"], ["tint1", "rgb(16,80,66)"], ["tint2", "rgb(28,140,116)"], ["tint3", "rgb(57,280,232)"]]
+  [1m[35m (7.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.2ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "colors" ("rgb", "score", "picture_id", "shade1", "shade2", "shade3", "tint1", "tint2", "tint3") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["rgb", "rgb(108,18,27)"], ["score", 9.851325888500002], ["picture_id", 1], ["shade1", "rgb(43,7,10)"], ["shade2", "rgb(75,12,18)"], ["shade3", "rgb(151,25,37)"], ["tint1", "rgb(58,94,91)"], ["tint2", "rgb(102,165,159)"], ["tint3", "rgb(205,331,319)"]]
+  [1m[35m (7.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.1ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "colors" ("rgb", "score", "picture_id", "shade1", "shade2", "shade3", "tint1", "tint2", "tint3") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["rgb", "rgb(125,8,23)"], ["score", 5.2784985885], ["picture_id", 1], ["shade1", "rgb(50,3,9)"], ["shade2", "rgb(87,5,16)"], ["shade3", "rgb(175,11,32)"], ["tint1", "rgb(52,98,92)"], ["tint2", "rgb(91,172,162)"], ["tint3", "rgb(182,345,324)"]]
+  [1m[35m (8.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.2ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "colors" ("rgb", "score", "picture_id", "shade1", "shade2", "shade3", "tint1", "tint2", "tint3") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["rgb", "rgb(22,11,8)"], ["score", 1.8106291534999999], ["picture_id", 1], ["shade1", "rgb(8,4,3)"], ["shade2", "rgb(15,7,5)"], ["shade3", "rgb(30,15,11)"], ["tint1", "rgb(93,97,98)"], ["tint2", "rgb(163,170,172)"], ["tint3", "rgb(326,341,345)"]]
+  [1m[35m (8.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.2ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "colors" ("rgb", "score", "picture_id", "shade1", "shade2", "shade3", "tint1", "tint2", "tint3") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["rgb", "rgb(229,99,122)"], ["score", 4.850442988499999], ["picture_id", 1], ["shade1", "rgb(91,39,48)"], ["shade2", "rgb(160,69,85)"], ["shade3", "rgb(320,138,170)"], ["tint1", "rgb(10,62,53)"], ["tint2", "rgb(18,109,93)"], ["tint3", "rgb(36,218,186)"]]
+  [1m[35m (8.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.1ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "colors" ("rgb", "score", "picture_id", "shade1", "shade2", "shade3", "tint1", "tint2", "tint3") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["rgb", "rgb(159,24,39)"], ["score", 4.606864488499999], ["picture_id", 1], ["shade1", "rgb(63,9,15)"], ["shade2", "rgb(111,16,27)"], ["shade3", "rgb(222,33,54)"], ["tint1", "rgb(38,92,86)"], ["tint2", "rgb(67,161,151)"], ["tint3", "rgb(134,323,302)"]]
+  [1m[35m (8.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.2ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "labels" ("description", "score", "picture_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["description", "car"], ["score", 98.0], ["picture_id", 1]]
+  [1m[35m (11.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.2ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "labels" ("description", "score", "picture_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["description", "vehicle"], ["score", 95.0], ["picture_id", 1]]
+  [1m[35m (6.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.1ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "labels" ("description", "score", "picture_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["description", "land vehicle"], ["score", 91.0], ["picture_id", 1]]
+  [1m[35m (8.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.1ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "labels" ("description", "score", "picture_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["description", "automotive design"], ["score", 77.0], ["picture_id", 1]]
+  [1m[35m (8.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.8ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "labels" ("description", "score", "picture_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["description", "sports car"], ["score", 75.0], ["picture_id", 1]]
+  [1m[35m (4.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.2ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "labels" ("description", "score", "picture_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["description", "automobile make"], ["score", 72.0], ["picture_id", 1]]
+  [1m[35m (7.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.2ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "labels" ("description", "score", "picture_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["description", "mazda"], ["score", 56.0], ["picture_id", 1]]
+  [1m[35m (8.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.2ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "labels" ("description", "score", "picture_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["description", "supercar"], ["score", 53.0], ["picture_id", 1]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.2ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "labels" ("description", "score", "picture_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["description", "auto show"], ["score", 53.0], ["picture_id", 1]]
+  [1m[35m (8.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pictures/1
+Completed 302 Found in 1976ms (ActiveRecord: 322.9ms)
+
+
+Started GET "/pictures/1" for 127.0.0.1 at 2016-11-14 20:05:20 -0500
+Processing by PicturesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPicture Load (0.2ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pictures/show.html.erb within layouts/application
+  [1m[36mLabel Load (0.3ms)[0m  [1m[34mSELECT "labels".* FROM "labels" WHERE "labels"."picture_id" = $1[0m  [["picture_id", 1]]
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."picture_id" = $1[0m  [["picture_id", 1]]
+  Rendered reviews/_form.html.erb (1.7ms)
+  Rendered pictures/_form.html.erb (1.0ms)
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 1]]
+  Rendered pictures/show.html.erb within layouts/application (16.3ms)
+Completed 200 OK in 40ms (Views: 35.2ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/pictures" for 127.0.0.1 at 2016-11-14 20:05:37 -0500
+Processing by PicturesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3Ff/XE0rq/cC+5D9K/fm3y+SEln4vhkNzCYuibVHJnBM+enpzBOTR6ribg80tyiF0hd2Y9SV8L0z8ZgsZx84Iw==", "picture"=>{"url"=>"http://i.imgur.com/TKb60RR.jpg"}, "commit"=>"Submit"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "pictures" ("url", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["url", "http://i.imgur.com/TKb60RR.jpg"], ["created_at", 2016-11-15 01:05:37 UTC], ["updated_at", 2016-11-15 01:05:37 UTC]]
+  [1m[35m (125.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.2ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "colors" ("rgb", "score", "picture_id", "shade1", "shade2", "shade3", "tint1", "tint2", "tint3") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["rgb", "rgb(82,41,35)"], ["score", 25.343378742000002], ["picture_id", 2], ["shade1", "rgb(32,16,14)"], ["shade2", "rgb(57,28,24)"], ["shade3", "rgb(114,57,49)"], ["tint1", "rgb(69,85,88)"], ["tint2", "rgb(121,149,154)"], ["tint3", "rgb(242,299,308)"]]
+  [1m[35m (107.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.1ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "colors" ("rgb", "score", "picture_id", "shade1", "shade2", "shade3", "tint1", "tint2", "tint3") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["rgb", "rgb(42,38,96)"], ["score", 15.818264741999998], ["picture_id", 2], ["shade1", "rgb(16,15,38)"], ["shade2", "rgb(29,26,67)"], ["shade3", "rgb(58,53,134)"], ["tint1", "rgb(85,86,63)"], ["tint2", "rgb(149,151,111)"], ["tint3", "rgb(298,303,222)"]]
+  [1m[35m (8.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.2ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "colors" ("rgb", "score", "picture_id", "shade1", "shade2", "shade3", "tint1", "tint2", "tint3") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["rgb", "rgb(215,124,43)"], ["score", 10.684590742], ["picture_id", 2], ["shade1", "rgb(86,49,17)"], ["shade2", "rgb(150,86,30)"], ["shade3", "rgb(301,173,60)"], ["tint1", "rgb(16,52,84)"], ["tint2", "rgb(28,91,148)"], ["tint3", "rgb(56,183,296)"]]
+  [1m[35m (5.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.2ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "colors" ("rgb", "score", "picture_id", "shade1", "shade2", "shade3", "tint1", "tint2", "tint3") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["rgb", "rgb(8,103,90)"], ["score", 8.334235442], ["picture_id", 2], ["shade1", "rgb(3,41,36)"], ["shade2", "rgb(5,72,62)"], ["shade3", "rgb(11,144,125)"], ["tint1", "rgb(98,60,66)"], ["tint2", "rgb(172,106,115)"], ["tint3", "rgb(345,212,230)"]]
+  [1m[35m (8.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.1ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "colors" ("rgb", "score", "picture_id", "shade1", "shade2", "shade3", "tint1", "tint2", "tint3") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["rgb", "rgb(133,110,80)"], ["score", 3.985309522], ["picture_id", 2], ["shade1", "rgb(53,44,32)"], ["shade2", "rgb(93,77,56)"], ["shade3", "rgb(186,154,112)"], ["tint1", "rgb(48,58,70)"], ["tint2", "rgb(85,101,122)"], ["tint3", "rgb(170,203,244)"]]
+  [1m[35m (7.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.1ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "colors" ("rgb", "score", "picture_id", "shade1", "shade2", "shade3", "tint1", "tint2", "tint3") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["rgb", "rgb(13,76,113)"], ["score", 3.401778422], ["picture_id", 2], ["shade1", "rgb(5,30,45)"], ["shade2", "rgb(9,53,79)"], ["shade3", "rgb(18,106,158)"], ["tint1", "rgb(96,71,56)"], ["tint2", "rgb(169,125,99)"], ["tint3", "rgb(338,250,198)"]]
+  [1m[35m (4.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.1ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "colors" ("rgb", "score", "picture_id", "shade1", "shade2", "shade3", "tint1", "tint2", "tint3") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["rgb", "rgb(244,160,64)"], ["score", 3.2015398619999997], ["picture_id", 2], ["shade1", "rgb(97,64,25)"], ["shade2", "rgb(170,112,44)"], ["shade3", "rgb(341,224,89)"], ["tint1", "rgb(4,38,76)"], ["tint2", "rgb(7,66,133)"], ["tint3", "rgb(15,133,267)"]]
+  [1m[35m (8.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.1ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "colors" ("rgb", "score", "picture_id", "shade1", "shade2", "shade3", "tint1", "tint2", "tint3") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["rgb", "rgb(79,44,43)"], ["score", 13.026748541999998], ["picture_id", 2], ["shade1", "rgb(31,17,17)"], ["shade2", "rgb(55,30,30)"], ["shade3", "rgb(110,61,60)"], ["tint1", "rgb(70,84,84)"], ["tint2", "rgb(123,147,148)"], ["tint3", "rgb(246,295,296)"]]
+  [1m[35m (7.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.1ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "colors" ("rgb", "score", "picture_id", "shade1", "shade2", "shade3", "tint1", "tint2", "tint3") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["rgb", "rgb(29,95,90)"], ["score", 8.262992242], ["picture_id", 2], ["shade1", "rgb(11,38,36)"], ["shade2", "rgb(20,66,62)"], ["shade3", "rgb(40,133,125)"], ["tint1", "rgb(90,64,66)"], ["tint2", "rgb(158,112,115)"], ["tint3", "rgb(316,224,230)"]]
+  [1m[35m (8.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.1ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "colors" ("rgb", "score", "picture_id", "shade1", "shade2", "shade3", "tint1", "tint2", "tint3") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["rgb", "rgb(56,18,16)"], ["score", 7.941161742], ["picture_id", 2], ["shade1", "rgb(22,7,6)"], ["shade2", "rgb(39,12,11)"], ["shade3", "rgb(78,25,22)"], ["tint1", "rgb(79,94,95)"], ["tint2", "rgb(139,165,167)"], ["tint3", "rgb(278,331,334)"]]
+  [1m[35m (8.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mColor Load (0.2ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 2]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.1ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "labels" ("description", "score", "picture_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["description", "color"], ["score", 96.0], ["picture_id", 2]]
+  [1m[35m (5.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.1ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "labels" ("description", "score", "picture_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["description", "screenshot"], ["score", 73.0], ["picture_id", 2]]
+  [1m[35m (8.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.1ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "labels" ("description", "score", "picture_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["description", "games"], ["score", 64.0], ["picture_id", 2]]
+  [1m[35m (8.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPicture Load (0.2ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "labels" ("description", "score", "picture_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["description", "computer wallpaper"], ["score", 52.0], ["picture_id", 2]]
+  [1m[35m (6.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pictures/2
+Completed 302 Found in 2969ms (ActiveRecord: 341.3ms)
+
+
+Started GET "/pictures/2" for 127.0.0.1 at 2016-11-14 20:05:40 -0500
+Processing by PicturesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPicture Load (0.2ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "pictures".* FROM "pictures" WHERE "pictures"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering pictures/show.html.erb within layouts/application
+  [1m[36mLabel Load (0.3ms)[0m  [1m[34mSELECT "labels".* FROM "labels" WHERE "labels"."picture_id" = $1[0m  [["picture_id", 2]]
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."picture_id" = $1[0m  [["picture_id", 2]]
+  Rendered reviews/_form.html.erb (1.1ms)
+  Rendered pictures/_form.html.erb (4.3ms)
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 2]]
+  Rendered pictures/show.html.erb within layouts/application (16.9ms)
+Completed 200 OK in 35ms (Views: 31.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pictures" for 127.0.0.1 at 2016-11-14 20:05:42 -0500
+Processing by PicturesController#gallery as HTML
+  Rendering pictures/gallery.html.erb within layouts/application
+  Rendered pictures/_form.html.erb (1.6ms)
+  [1m[36mPicture Load (0.3ms)[0m  [1m[34mSELECT "pictures".* FROM "pictures"[0m
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 2]]
+  [1m[36mColor Load (0.3ms)[0m  [1m[34mSELECT "colors".* FROM "colors" WHERE "colors"."picture_id" = $1[0m  [["picture_id", 1]]
+  Rendered pictures/gallery.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 54ms (Views: 51.3ms | ActiveRecord: 1.0ms)
+
+
