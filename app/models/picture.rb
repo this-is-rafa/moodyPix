@@ -10,16 +10,7 @@ class Picture < ApplicationRecord
     googleVision
     #call parsing methods to extract useful data from API response...    
     visionColors
-    colorsPrimary
-    colorsShade1
-    colorsShade2
-    colorsShade3
-    colorsTint1
-    colorsTint2
-    colorsTint3
     visionLabels
-    visionFace
-    visionText
   end
 
   def googleVision
@@ -103,101 +94,6 @@ class Picture < ApplicationRecord
  
    end
 
-  # convert RGB hashes to strings to use for HTML rgb(r,g,b) color values
-  def colorsPrimary
-    @color_rgb_strings_primary = []
-    self.colors.each do |rgb|
-      r = rgb["red"]
-      g = rgb["green"]
-      b = rgb["blue"]
-      @color_rgb_strings_primary << "rgb(#{r},#{g},#{b})"
-    end
-  end
-
-  def colorsShade1
-    @color_rgb_strings_shade1 = []
-    shade_percent = 0.4
-    self.colors.each do |rgb|
-      r = rgb["red"].to_f
-      g = rgb["green"].to_f
-      b = rgb["blue"].to_f
-      r = (r*shade_percent).to_i
-      g = (g*shade_percent).to_i
-      b = (b*shade_percent).to_i
-      @color_rgb_strings_shade1 << "rgb(#{r},#{g},#{b})"
-    end
-  end
-
-  def colorsShade2
-    @color_rgb_strings_shade2 = []
-    shade_percent = 0.6
-    self.colors.each do |rgb|
-      r = rgb["red"].to_f
-      g = rgb["green"].to_f
-      b = rgb["blue"].to_f
-      r = (r*shade_percent).to_i
-      g = (g*shade_percent).to_i
-      b = (b*shade_percent).to_i
-      @color_rgb_strings_shade2 << "rgb(#{r},#{g},#{b})"
-    end
-  end
-
-  def colorsShade3
-    @color_rgb_strings_shade3 = []
-    shade_percent = 1.5
-    self.colors.each do |rgb|
-      r = rgb["red"].to_f
-      g = rgb["green"].to_f
-      b = rgb["blue"].to_f
-      r = (r*shade_percent).to_i
-      g = (g*shade_percent).to_i
-      b = (b*shade_percent).to_i
-      @color_rgb_strings_shade3 << "rgb(#{r},#{g},#{b})"
-    end
-  end
-
-  def colorsTint1
-    @color_rgb_strings_tint1 = []
-    tint_percent = 0.4
-    self.colors.each do |rgb|
-      r = rgb["red"].to_f
-      g = rgb["green"].to_f
-      b = rgb["blue"].to_f
-      r = ((255-r)*tint_percent).to_i
-      g = ((255-g)*tint_percent).to_i
-      b = ((255-b)*tint_percent).to_i
-      @color_rgb_strings_tint1 << "rgb(#{r},#{g},#{b})"
-    end
-  end
-
-  def colorsTint2
-    @color_rgb_strings_tint2 = []
-    tint_percent = 0.6
-    self.colors.each do |rgb|
-      r = rgb["red"].to_f
-      g = rgb["green"].to_f
-      b = rgb["blue"].to_f
-      r = ((255-r)*tint_percent).to_i
-      g = ((255-g)*tint_percent).to_i
-      b = ((255-b)*tint_percent).to_i
-      @color_rgb_strings_tint2 << "rgb(#{r},#{g},#{b})"
-    end
-  end
-
-  def colorsTint3
-    @color_rgb_strings_tint3 = []
-    tint_percent = 1.5
-    self.colors.each do |rgb|
-      r = rgb["red"].to_f
-      g = rgb["green"].to_f
-      b = rgb["blue"].to_f
-      r = ((255-r)*tint_percent).to_i
-      g = ((255-g)*tint_percent).to_i
-      b = ((255-b)*tint_percent).to_i
-      @color_rgb_strings_tint3 << "rgb(#{r},#{g},#{b})"
-    end
-  end
-
   # Extract and parse labelAnnotations portion of JSON response
   def visionLabels
     labels = @json["responses"][0]["labelAnnotations"]
@@ -211,20 +107,4 @@ class Picture < ApplicationRecord
     Label.store_labels(@labeldescriptions, @labelscores, self.id)
   end
   
-  # Extract and parse faceAnnotations portion of JSON response
-  def visionFace
-    if @json && @json["responses"] && @json["responses"][0]["faceAnnotations"]
-      @face_mood = @json["responses"][0]["faceAnnotations"][0]
-      @joy = @face_mood["joyLikelihood"]
-      @sorrow = @face_mood["sorrowLikelihood"]
-      @anger = @face_mood["angerLikelihood"]
-      @surprise = @face_mood["surpriseLikelihood"]
-    end
-  end
-
-  def visionText
-    if @json && @json["responses"] && @json["responses"][0]["textAnnotations"] && @json["responses"][0]["textAnnotations"][0]["description"]
-      @detected_text = @json["responses"][0]["textAnnotations"][0]["description"]
-    end
-  end
 end
